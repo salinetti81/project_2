@@ -25,6 +25,12 @@ router.get('/:id/json', function(req, res) {
     });
 });
 
+//LOGOUT
+router.get('/logout', function(req, res) {
+    req.logout();
+    res.redirect('/users');
+});
+
 //SHOW PAGE FOR WHEN USER IS LOGGED IN
 router.get('/:id', isLoggedIn, function(req, res) {
     //checks if the user is logged in
@@ -36,38 +42,36 @@ router.get('/:id', isLoggedIn, function(req, res) {
             res.render('users/show.ejs', {
                 user: user,
                 //other schema info??????
-            })
-        })
-    })
-})
-
-//LOGOUT
-router.get('/logout', function(req, res) {
-    req.logout();
-    res.redirect('/users');
+            });
+        });
+    });
 });
 
 // CREATE NEW USER
     //PROCESS SIGNUP FORM
 router.post('/', passport.authenticate('local-signup', {
     failureRedirect : '/users'}), function(req, res) { //redirect back to signup if there is an error
-
         res.redirect('/users' + req.user.id);
         console.log(users);
 });
-
     //PROCESS THE LOGIN FORM
-router.post('/:id/newuser', function(req, res) {
-    User.findById(req.params.id, function(err, user) {
-        var newUser = new User(req.body);
-        newUser.save(function(err, location) {
-            user.push(user);
-            user.save(function(err) {
-                res.redirect('/users/' + req.params.is);
-            });
-        });
-    });
+router.post('/login', passport.authenticate('local-login', {
+    // successRedirect : '/profile', // redirect to the secure profile section
+   failureRedirect : '/users'}), function(req, res) { // redirect back to the signup page if there is an error
+        res.redirect('/users/' + req.user.id);
 });
+    
+// router.post('/:id/newuser', function(req, res) {
+//     User.findById(req.params.id, function(err, user) {
+//         var newUser = new User(req.body);
+//         newUser.save(function(err, location) {
+//             user.push(user);
+//             user.save(function(err) {
+//                 res.redirect('/users/' + req.params.is);
+//             });
+//         });
+//     });
+// });
 
 //DELETE
 router.delete('/:id', function(req, res) {
