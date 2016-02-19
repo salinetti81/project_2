@@ -1,15 +1,16 @@
 //userSchema 
 var mongoose = require('mongoose');
-//require second schema here
+var soundCloudSchema = require('./soundcloud').schema;
 var bcrypt = require('bcrypt-nodejs');
 
 var userSchema = mongoose.Schema({
 	username: String,
 	email: String,
   password: String,
+  img: String, //url 
 	bio: String,
-	instruments: String,
-	//add more schema stuff
+	instruments: [],
+	soundCloud: [soundCloudSchema] 
 });
 
 // methods ======================

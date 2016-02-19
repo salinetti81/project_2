@@ -1,11 +1,25 @@
+<!DOCTYPE html>
 <html>
-<head>
-	<title>Project 2</title>
-</head>
+	<% include ../partials/head %>
+<body>
+	<% include ../partials/nav %>
 <body>
 Show.ejs page
 
+<a href="/users/logout"><p>Logout</p></a>
+<ul id="results">
 
+	<a href="#" class="connect">Connect with SoundCloud</a>
+        <p>Hello, your name is <span id="username"></span></p>
 
 </body>
 </html>
+
+<!-- <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Connect with SoundCloud</title>
+  </head>
+  <body onload="window.setTimeout(window.opener.SC.connectCallback, 1)">
+    <b style="text-align: center;">This popup should automatically close in a few seconds</b>
+  </body>
+</html> -->
