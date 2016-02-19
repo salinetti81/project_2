@@ -40,7 +40,7 @@ router.get('/:id', isLoggedIn, function(req, res) {
         //finds single user
         User.findById(req.params.id, function(err, user) {
             res.render('users/show.ejs', {
-                user: user,
+                user: user
                 //other schema info??????
             });
         });
@@ -51,7 +51,7 @@ router.get('/:id', isLoggedIn, function(req, res) {
     //PROCESS SIGNUP FORM
 router.post('/', passport.authenticate('local-signup', {
     failureRedirect : '/users'}), function(req, res) { //redirect back to signup if there is an error
-        res.redirect('/users' + req.user.id);
+        res.redirect('/users/' + req.user.id);
         console.log(users);
 });
     //PROCESS THE LOGIN FORM
