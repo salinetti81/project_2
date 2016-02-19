@@ -1,66 +1,113 @@
-// app/routes.js
-module.exports = function(app, passport) {
+var express = require('express');
+var router = express.Router();
+var passport = require('passport');
+var User = require('../models/users');
 
-    // =====================================
-    // HOME PAGE (with login links) ========
-    // =====================================
-    app.get('/', function(req, res) {
-        res.render('index.ejs'); // load the index.ejs file
+//INDEX
+router.get('/', function(req, res) {
+    res.locals.login = req.isAuthenticated();
+    User.find(function(err, data) {
+        res.render('./users/index.ejs', {users: data});
     });
+});
 
-    // =====================================
-    // LOGIN ===============================
-    // =====================================
-    // show the login form
-    app.get('/login', function(req, res) {
-
-        // render the page and pass in any flash data if it exists
-        res.render('login.ejs', { message: req.flash('loginMessage') }); 
+//JSON
+router.get('/json', function(req, res) {
+    User.find(function(err, users) {
+        res.send(users);
     });
+});
 
-    // process the login form
-    // app.post('/login', do all our passport stuff here);
-
-    // =====================================
-    // SIGNUP ==============================
-    // =====================================
-    // show the signup form
-    app.get('/signup', function(req, res) {
-
-        // render the page and pass in any flash data if it exists
-        res.render('signup.ejs', { message: req.flash('signupMessage') });
+//SINGLE JSON 
+router.get('/:id/json', function(req, res) {
+    User.findById(req.params.id, function(err, user) {
+        res.send(user);
     });
+});
 
-    // process the signup form
-    // app.post('/signup', do all our passport stuff here);
+//SHOW PAGE FOR WHEN USER IS LOGGED IN
+router.get('/:id', isLoggedIn, function(req, res) {
+    //checks if the user is logged in
+    res.locals.usertrue = (req.user.is == req.params.id);
+    //list users
+    User.find({}, function(err, users) {
+        //finds single user
+        User.findById(req.params.id, function(err, user) {
+            res.render('users/show.ejs', {
+                user: user,
+                //other schema info??????
+            })
+        })
+    })
+})
 
-    // =====================================
-    // PROFILE SECTION =====================
-    // =====================================
-    // we will want this protected so you have to be logged in to visit
-    // we will use route middleware to verify this (the isLoggedIn function)
-    app.get('/profile', isLoggedIn, function(req, res) {
-        res.render('profile.ejs', {
-            user : req.user // get the user out of session and pass to template
+//LOGOUT
+router.get('/logout', function(req, res) {
+    req.logout();
+    res.redirect('/users');
+});
+
+// CREATE NEW USER
+    //PROCESS SIGNUP FORM
+router.post('/', passport.authenticate('local-signup', {
+    failureRedirect : '/users'}), function(req, res) { //redirect back to signup if there is an error
+
+        res.redirect('/users' + req.user.id);
+        console.log(users);
+});
+
+    //PROCESS THE LOGIN FORM
+router.post('/:id/newuser', function(req, res) {
+    User.findById(req.params.id, function(err, user) {
+        var newUser = new User(req.body);
+        newUser.save(function(err, location) {
+            user.push(user);
+            user.save(function(err) {
+                res.redirect('/users/' + req.params.is);
+            });
         });
     });
+});
 
-    // =====================================
-    // LOGOUT ==============================
-    // =====================================
-    app.get('/logout', function(req, res) {
-        req.logout();
-        res.redirect('/');
+//DELETE
+router.delete('/:id', function(req, res) {
+    console.log('A user was deleted');
+    var deleteUser = req.params.id;
+    User.findById(deleteUser, function(err, data) {
+        //for loop to delete user
+        for (var i = 0; i < users.length; i++) {
+            User.findByIdAndRemove(deleteUser, function(err, users) {
+                res.redirect('/users');
+            });
+        };
     });
-};
+});
 
-// route middleware to make sure a user is logged in
+//define isLoggedIn
 function isLoggedIn(req, res, next) {
-
-    // if user is authenticated in the session, carry on 
+    //if user exists, do this
     if (req.isAuthenticated())
         return next();
+    //if user doesn't exists, go here
+res.redirect('/');
+} ;
 
-    // if they aren't redirect them to the home page
-    res.redirect('/');
-}
+module.exports = router;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,8 +1,27 @@
+<!DOCTYPE html>
 <html>
-<head>
-	<title>Index.ejs</title>
-</head>
+	<% include ../partials/head %>
 <body>
+	<% include ../partials/nav %>
 
+<h4>Signup</h4>
+				<form action="/users" method="POST">
+					<input type="text" name="username" placeholder="username">
+					<input type="text" name="email" placeholder="email">
+					<input type="text" name="password" placeholder="password">
+					<input type="submit">
+				</form>
+
+				<h4>Login</h4>
+				<form action="/users/login" method="POST">
+					<input type="text" name="email" placeholder="email">
+					<input type="text" name="password" placeholder="password">
+					<input type="submit">
+				</form>
+
+				<script src="https://connect.soundcloud.com/sdk/sdk-3.0.0.js"></script>
+<script>
+
+</script>
 </body>
 </html>

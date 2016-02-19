@@ -31,7 +31,7 @@ app.use(passport.session()); //for persistent login sessions
 
 //routes
 var usersController = require('./controllers/users');
-//require('./config/passport.js')(passport);
+require('./config/passport.js')(passport);
 
 app.use('/users', usersController);
 
