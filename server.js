@@ -4,6 +4,7 @@ var app = express();
 var port = process.env.PORT || 3000;
 var mongoose = require('mongoose');
 var passport = require('passport');
+var methodOverride = require('method-override');
 
 var morgan = require('morgan');
 // var cookieParser = require('cookie-parser');
@@ -23,6 +24,13 @@ app.use(bodyParser());
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(methodOverride(function(req, res){
+  if (req.body && typeof req.body === 'object' && '_method' in req.body) {
+    var method = req.body._method;
+    delete req.body._method;
+    return method;
+  }
+}));
 
 //passport requirements
 app.use(session({secret: 'secret-session'}));

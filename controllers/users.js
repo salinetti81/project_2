@@ -77,21 +77,6 @@ router.post('/login', passport.authenticate('local-login', {
    failureRedirect : '/users'}), function(req, res) { // redirect back to the signup page if there is an error
         res.redirect('/users/' + req.user.id);
 });
-    
-
-//DELETE
-router.delete('/:id', function(req, res) {
-    console.log('A user was deleted');
-    var deleteUser = req.params.id;
-    User.findById(deleteUser, function(err, data) {
-        //for loop to delete user
-        for (var i = 0; i < users.length; i++) {
-            User.findByIdAndRemove(deleteUser, function(err, users) {
-                res.redirect('/users');
-            });
-        };
-    });
-});
 
 //define isLoggedIn
 function isLoggedIn(req, res, next) {
@@ -104,11 +89,39 @@ res.redirect('/');
 
     //PROCESS INFO FORM
 router.post('/:id', function(req, res){
-     console.log(req.body);
-    User.findByIdAndUpdate(req.params.id, function(err, data) {
+     console.log("This is req.body " + req.body);
+     console.log("This is req.params.id " + req.params.id)
+    User.findByIdAndUpdate(req.params.id, req.body, function(err, data) {
         res.redirect('/users/' + req.params.id);
     });
 });
+
+// router.delete('/:id', function(req, res){
+//     console.log("This is delete " + req.params.id)
+//   User.findByIdAndRemove(req.params.id, function(err, data){
+//     res.redirect('/');
+//   });
+// });
+
+router.delete('/:id', function(req,res){
+    console.log("This is delete " + req.params.id)
+    User.findByIdAndRemove(req.params.id, function(err, user){
+        res.redirect('/users/');
+    })
+});
+// DELETE
+// router.delete('/:id', function(req, res) {
+//     console.log("This is delete " + req.params.id)
+//     var deleteUser = req.params.id;
+//     User.findById(deleteUser, function(err, user) {
+//         //for loop to delete user
+//         for (var i = 0; i < users.length; i++) {
+//             User.findByIdAndRemove(deleteUser, function(err, user) {
+//                 res.redirect('/users');
+//             });
+//         };
+//     });
+// });
 
 
 module.exports = router;

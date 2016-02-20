@@ -8,19 +8,40 @@
 <!-- Logout link -->
 <a href="/users/logout"><p>Logout</p></a>
 
-	<h4>More Info</h4>
+	<h4>Tell Us About Yourself</h4>
 <!-- Needs to be in a serperate router from sign up form -->
+<div class="info_container">
 		<form action="/users/<%=user.id%>" method="POST"> 
-			<input type="text" name="img" placeholder="img url">
-			<input type="text" name="bio" placeholder="bio">
-			<input type="text" name="instruments" placeholder="instruments">
-			<input type="text" name="soundcloud" placeholder="SoundCloud Profile">
-			<input type="text" name="twitter" placeholder="Twitter Profile">
-			<input type="text" name="facebook" placeholder="Facebook Profile">
+			<input type="text" name="img" placeholder="img url"><br>
+			<input type="text" name="instruments" placeholder="instruments"><br>
+			<input type="text" name="soundcloud" placeholder="SoundCloud Profile"><br>
+			<input type="text" name="twitter" placeholder="Twitter Profile"><br>
+			<input type="text" name="facebook" placeholder="Facebook Profile"><br><br>
 			<input type="hidden" name="_method" value="POST"/>
-			<input type="submit">
-		</form>
+			 <textarea class="bio" name="bio" rows="15" cols="50" placeholder="Bio"></textarea><br/>
+			<input type="submit"><br>
 
+		</form>
+</div>
+<br>
+		 <div>
+		 	<h4>This is the new info:</h4>
+    <ul>
+      <% for(var i = 0; i < user.length; i++){ %>
+        <li> <%=user[i].name%> </li>
+        <li> <%=user[i].bio%> </li>
+        <li> <%=user[i].instruments%> </li>
+      <% } %>
+    </ul>
+    </div>
+
+<!-- Delete Button -->
+	<form action="/users/<%=user.id%>" method="POST">
+    <input type="hidden" name="_method" value="DELETE">
+    <button id="delete-button">Delete My Account</button>
+</form>
+
+ <hr>
 <!-- list from SoundCloud of music genres -->
 <!-- <ul id="results"> -->
 
