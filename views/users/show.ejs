@@ -20,20 +20,17 @@
 			<input type="hidden" name="_method" value="POST"/>
 			 <textarea class="bio" name="bio" rows="15" cols="50" placeholder="Bio"></textarea><br/>
 			<input type="submit"><br>
-
 		</form>
 </div>
-<br>
-		 <div>
+<br>	<img src="<%= user.img%>">
 		 	<h4>This is the new info:</h4>
-    <ul>
-      <% for(var i = 0; i < user.length; i++){ %>
-        <li> <%=user[i].name%> </li>
-        <li> <%=user[i].bio%> </li>
-        <li> <%=user[i].instruments%> </li>
-      <% } %>
+       <ul>
+      	<li> <%=user.instruments%> </li>
+      	<li> <%=user.soundcloud%> </li>
+      	<li> <%=user.facebook%> </li>
+        <li> <%=user.twitter%> </li>
+        <li> <%=user.bio%> </li>
     </ul>
-    </div>
 
 <!-- Delete Button -->
 	<form action="/users/<%=user.id%>" method="POST">

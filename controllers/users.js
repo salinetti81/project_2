@@ -36,17 +36,30 @@ router.get('/logout', function(req, res) {
 router.get('/:id', isLoggedIn, function(req, res) {
     //checks if the user is logged in
     res.locals.usertrue = (req.user.is == req.params.id);
+    req.params.id == req.user.id ? res.locals.usertrue = true : res.locals.usertrue = false;
     //list users
     // User.find({}, function(err, users) {
         //finds single user
-        User.findById(req.params.id, function(err, data) {
-            res.render('users/show.ejs', {
-                user: data
-                //other schema info??????
-            });
+        User.findById(req.params.id, function(err, user) {
+            res.render('users/show.ejs', { user: user });
         // });
     });
 });
+
+// router.post('/:id/newinfo', function(req, res) {
+//     User.findById(req.params.id, function(err, user) {
+//         var newUser = new User(req.body);
+//         user.save(function(err, location) {
+//             user.push(user);
+//             user.save(function(err, user) {
+//                 res.redirect('/users/' + req.params.id);
+//             });         
+//         });
+//     });
+// });
+
+
+
 
 // CREATE NEW USER
     //PROCESS SIGNUP FORM
