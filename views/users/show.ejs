@@ -2,16 +2,24 @@
 <html>
 	<% include ../partials/head %>
 <body>
-	<% include ../partials/nav %>
+	<h1>Welcome, username </h1>
 <body>
-Show.ejs page
 
+<!-- Logout link -->
 <a href="/users/logout"><p>Logout</p></a>
-<ul id="results">
 
-	<a href="#" class="connect">Connect with SoundCloud</a>
-        <p>Hello, your name is <span id="username"></span></p>
+<!-- list from SoundCloud of music genres -->
+<!-- <ul id="results"> -->
 
+<!-- Pops open soundcloud login window. -->
+<a href="#" class="connect">Connect with SoundCloud</a>
+  <p>Hello, your name is <span id="username"></span></p>
+
+<!-- Sound cloud player widget -->
+  <div class="player" id="player"> </div> 
+
+
+<% include ../partials/footer %>
 </body>
 </html>
 
