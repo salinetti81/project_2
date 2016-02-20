@@ -10,7 +10,9 @@ var userSchema = mongoose.Schema({
   img: String, //url 
 	bio: String,
 	instruments: [],
-	soundCloud: [soundCloudSchema] 
+	soundCloud: [soundCloudSchema],
+	twitter: String, //url
+	facebook: String //url
 });
 
 // methods ======================
