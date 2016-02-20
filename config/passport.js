@@ -82,7 +82,7 @@ User.findOne({ 'email' :  email }, function(err, user) {
 
 passport.use('local-login', new LocalStrategy({
 // by default, local strategy uses username and password, we will override with email
-usernameField : 'email',
+usernameField : 'username',
 passwordField : 'password',
 passReqToCallback : true // allows us to pass back the entire request to the callback
 },
