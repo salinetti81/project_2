@@ -2,11 +2,24 @@
 <html>
 	<% include ../partials/head %>
 <body>
-	<h1>Welcome, username </h1>
+	<h1> <%= user.username %>'s Profile </h1>
 <body>
-
+		
 <!-- Logout link -->
 <a href="/users/logout"><p>Logout</p></a>
+
+	<h4>More Info</h4>
+<!-- Needs to be in a serperate router from sign up form -->
+		<form action="/users/<%=user.id%>" method="POST"> 
+			<input type="text" name="img" placeholder="img url">
+			<input type="text" name="bio" placeholder="bio">
+			<input type="text" name="instruments" placeholder="instruments">
+			<input type="text" name="soundcloud" placeholder="SoundCloud Profile">
+			<input type="text" name="twitter" placeholder="Twitter Profile">
+			<input type="text" name="facebook" placeholder="Facebook Profile">
+			<input type="hidden" name="_method" value="POST"/>
+			<input type="submit">
+		</form>
 
 <!-- list from SoundCloud of music genres -->
 <!-- <ul id="results"> -->

@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var passport = require('passport');
 var User = require('../models/users');
+var SoundCloud = require('../models/soundcloud');
 
 //INDEX
 router.get('/', function(req, res) {
@@ -36,14 +37,14 @@ router.get('/:id', isLoggedIn, function(req, res) {
     //checks if the user is logged in
     res.locals.usertrue = (req.user.is == req.params.id);
     //list users
-    User.find({}, function(err, users) {
+    // User.find({}, function(err, users) {
         //finds single user
-        User.findById(req.params.id, function(err, user) {
+        User.findById(req.params.id, function(err, data) {
             res.render('users/show.ejs', {
-                user: user
+                user: data
                 //other schema info??????
             });
-        });
+        // });
     });
 });
 
@@ -52,8 +53,24 @@ router.get('/:id', isLoggedIn, function(req, res) {
 router.post('/', passport.authenticate('local-signup', {
     failureRedirect : '/users'}), function(req, res) { //redirect back to signup if there is an error
         res.redirect('/users/' + req.user.id);
-        console.log(users);
+        // console.log(users);
 });
+
+
+
+
+// router.post('/users', function(req, res) {
+//     User.findById(req.params.id, function(err, user) {
+//         var newUser = new User(req.body);
+//         newUser.save(function(err, location) {
+//             user.push(user);
+//             user.save(function(err) {
+//                 res.redirect('/users/' + req.params.id);
+//             });
+//         });
+//     });
+// });
+
     //PROCESS THE LOGIN FORM
 router.post('/login', passport.authenticate('local-login', {
     // successRedirect : '/profile', // redirect to the secure profile section
@@ -61,17 +78,6 @@ router.post('/login', passport.authenticate('local-login', {
         res.redirect('/users/' + req.user.id);
 });
     
-// router.post('/:id/newuser', function(req, res) {
-//     User.findById(req.params.id, function(err, user) {
-//         var newUser = new User(req.body);
-//         newUser.save(function(err, location) {
-//             user.push(user);
-//             user.save(function(err) {
-//                 res.redirect('/users/' + req.params.is);
-//             });
-//         });
-//     });
-// });
 
 //DELETE
 router.delete('/:id', function(req, res) {
@@ -95,6 +101,15 @@ function isLoggedIn(req, res, next) {
     //if user doesn't exists, go here
 res.redirect('/');
 } ;
+
+    //PROCESS INFO FORM
+router.post('/:id', function(req, res){
+     console.log(req.body);
+    User.findByIdAndUpdate(req.params.id, function(err, data) {
+        res.redirect('/users/' + req.params.id);
+    });
+});
+
 
 module.exports = router;
 

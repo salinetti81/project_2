@@ -84,6 +84,7 @@ passport.use('local-login', new LocalStrategy({
 // by default, local strategy uses username and password, we will override with email
 usernameField : 'username',
 passwordField : 'password',
+
 passReqToCallback : true // allows us to pass back the entire request to the callback
 },
 function(req, email, password, done) { // callback with email and password from our form

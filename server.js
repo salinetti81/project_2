@@ -34,6 +34,7 @@ var usersController = require('./controllers/users');
 require('./config/passport.js')(passport);
 
 app.use('/users', usersController);
+// app.use('/users', soundCloudController);
 
 app.get('/', function(req, res) {
 	res.redirect('/users');
