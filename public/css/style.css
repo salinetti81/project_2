@@ -1,23 +1,25 @@
-/** {
+* {
 	padding: 0;
 	margin: 0;
-}*/
+}
 body {
 	background-color: snow;
-/*	padding: auto;*/
+	margin: auto;
+	padding: auto;
+}
+
+main {
+	padding-top: 200px;
+	padding-left: 5%;
 }
 
 .player {
 	width: 350px;
-
-	margin-left: 10%
-	
+	margin-left: 10%;
 }
 
 footer hr {
 	width: 100%;
-
-
 }
 
 footer {
@@ -25,6 +27,29 @@ footer {
 
 }
 
+.show_header {
+	/*background-color: rgb(38, 38, 38);*/
+	background-color: snow;
+	width: 100%;
+	/*opacity: .8;*/
+	color: black;
+	/*margin-bottom: 200px;*/
+	position: fixed;
+}
+
+a {
+	text-decoration: none;
+	color: black;
+}
+
+img	{
+	border: black;
+	height: 100px;
+	width: 100px;
+	border-radius: 100px;
+	margin-top: 30px;
+	margin-left: 10%
+}
 
 li {
 	list-style: none;

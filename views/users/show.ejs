@@ -2,11 +2,20 @@
 <html>
 	<% include ../partials/head %>
 <body>
-	<h1> <%= user.username %>'s Profile </h1>
-<body>
-		
+
+<header class= "show_header">
+	<nav>
+	<ul>
+		<li><img src="<%= user.img%>"></li>
+		<li><h1> <%= user.username %>'s Profile </h1></li>
+		<li><a href="/users/logout"><p>Logout</p></a></li>
+	</ul>
+
+</header>
+
+<main>
 <!-- Logout link -->
-<a href="/users/logout"><p>Logout</p></a>
+
 
 	<h4>Tell Us About Yourself</h4>
 <!-- Needs to be in a serperate router from sign up form -->
@@ -22,7 +31,7 @@
 			<input type="submit"><br>
 		</form>
 </div>
-<br>	<img src="<%= user.img%>">
+<br>	
 		 	<h4>This is the new info:</h4>
        <ul>
       	<li> <%=user.instruments%> </li>
@@ -31,12 +40,6 @@
         <li> <%=user.twitter%> </li>
         <li> <%=user.bio%> </li>
     </ul>
-
-<!-- Delete Button -->
-	<form action="/users/<%=user.id%>" method="POST">
-    <input type="hidden" name="_method" value="DELETE">
-    <button id="delete-button">Delete My Account</button>
-</form>
 
  <hr>
 <!-- list from SoundCloud of music genres -->
@@ -49,6 +52,12 @@
 <!-- Sound cloud player widget -->
   <div class="player" id="player"> </div> 
 
+  <!-- Delete Button -->
+	<form action="/users/<%=user.id%>" method="POST">
+    <input type="hidden" name="_method" value="DELETE">
+    <button id="delete-button">Delete My Account</button>
+</form>
+</main>
 
 <% include ../partials/footer %>
 </body>
