@@ -58,15 +58,16 @@ router.get('/:id', isLoggedIn, function(req, res) {
 //     });
 // });
 
-
-
-
 // CREATE NEW USER
     //PROCESS SIGNUP FORM
 router.post('/', passport.authenticate('local-signup', {
     failureRedirect : '/users'}), function(req, res) { //redirect back to signup if there is an error
-        res.redirect('/users/' + req.user.id);
+        // res.redirect('users/index.ejs/' + req.user.id);
         // console.log(users);
+        User.findById(req.params.id, function(err, user) {
+            res.render('users/index.ejs', { user: user });
+        // });
+    });
 });
 
 

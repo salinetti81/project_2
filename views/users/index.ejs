@@ -5,10 +5,13 @@
 	<% include ../partials/nav %>
 
 <h1>Users/index page</h1>
+<br><br>
+<h2>ONLY NEW USERS SHOULD REDIRECT TO THIS PAGE</h2>
+<br><hr><br>
 <h4>Tell Us About Yourself</h4>
 <!-- Needs to be in a serperate router from sign up form -->
 <div class="info_container" id= "info_container">
-		<form action="/users/<%=user.id%>" method="POST"> 
+		<form action="/users/" method="POST"> 
 			<input type="text" name="img" placeholder="img url"><br>
 			<input type="text" name="instruments" placeholder="instruments"><br>
 			<input type="text" name="soundcloud" placeholder="SoundCloud Profile"><br>
@@ -22,25 +25,25 @@
 <br>	
 
 <!-- Below here can be delted once all routes work -->
-	<h4>Signup</h4>
+	<!-- <h4>Signup</h4>
 		<form action="/users" method="POST">
 			<input type="text" name="username" placeholder="username">
 			<input type="text" name="email" placeholder="email">
 			<input type="text" name="password" placeholder="password">
 			<input type="submit">
-		</form>
+		</form> -->
 <!-- if sign up for is filled out, go to this next form -->
 
 
 <!-- Goes directly to users profile/show page -->
-	<h4>Login</h4>
+	<!-- <h4>Login</h4>
 		<form action="/users/login" method="POST">
 			<input type="text" name="username" placeholder="username">
 			<input type="text" name="password" placeholder="password">
 			<input type="submit">
 		</form>
 
-
+ -->
 
 <% include ../partials/footer %>
 </body>
