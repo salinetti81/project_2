@@ -7,14 +7,20 @@ console.log("Don't Panic");
 
 // SC.initialize({
 //   client_id: 'YOUR_CLIENT_ID'
+// // });
+// $( "#submit_button" ).click(function() {
+//  console.log('submit button was clicked');
+ 
+//  // $('.info_container').hide();
+//  // $( ".new_info" ).append("<li> <%=user.instruments%> </li>");
 // });
-
 
 // initilizes SoundCloud on pop up window
 SC.initialize({
   client_id: '340f063c670272fac27cfa67bffcafc4',
   redirect_uri: 'http://external.codecademy.com/soundcloud.html'
 });
+
 
 // lists genres
   // SC.get('/tracks', { genres: 'jazz	' }, function(tracks) {

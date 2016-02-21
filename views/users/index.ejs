@@ -4,8 +4,24 @@
 <body>
 	<% include ../partials/nav %>
 
+<h1>Users/index page</h1>
+<h4>Tell Us About Yourself</h4>
+<!-- Needs to be in a serperate router from sign up form -->
+<div class="info_container" id= "info_container">
+		<form action="/users/<%=user.id%>" method="POST"> 
+			<input type="text" name="img" placeholder="img url"><br>
+			<input type="text" name="instruments" placeholder="instruments"><br>
+			<input type="text" name="soundcloud" placeholder="SoundCloud Profile"><br>
+			<input type="text" name="twitter" placeholder="Twitter Profile"><br>
+			<input type="text" name="facebook" placeholder="Facebook Profile"><br><br>
+			<input type="hidden" name="_method" value="POST"/>
+			 <textarea class="bio" name="bio" rows="15" cols="50" placeholder="Bio"></textarea><br/>
+			<button id= "submit_button" type="submit">Submit</button><br>
+		</form>
+</div>
+<br>	
 
-
+<!-- Below here can be delted once all routes work -->
 	<h4>Signup</h4>
 		<form action="/users" method="POST">
 			<input type="text" name="username" placeholder="username">

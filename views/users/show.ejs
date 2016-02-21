@@ -16,10 +16,10 @@
 <main>
 <!-- Logout link -->
 
-
+<!-- Move this to users/index page -->
 	<h4>Tell Us About Yourself</h4>
 <!-- Needs to be in a serperate router from sign up form -->
-<div class="info_container">
+<div class="info_container" id= "info_container">
 		<form action="/users/<%=user.id%>" method="POST"> 
 			<input type="text" name="img" placeholder="img url"><br>
 			<input type="text" name="instruments" placeholder="instruments"><br>
@@ -28,18 +28,22 @@
 			<input type="text" name="facebook" placeholder="Facebook Profile"><br><br>
 			<input type="hidden" name="_method" value="POST"/>
 			 <textarea class="bio" name="bio" rows="15" cols="50" placeholder="Bio"></textarea><br/>
-			<input type="submit"><br>
+			<button id= "submit_button" type="submit">Submit</button><br>
 		</form>
 </div>
 <br>	
+
+<div class= "new_info">
 		 	<h4>This is the new info:</h4>
        <ul>
-      	<li> <%=user.instruments%> </li>
-      	<li> <%=user.soundcloud%> </li>
-      	<li> <%=user.facebook%> </li>
-        <li> <%=user.twitter%> </li>
-        <li> <%=user.bio%> </li>
+      	<li><h4>Instruments:</h4> <%=user.instruments%> </li>
+      	<li><h4>SoundCloud:</h4> <%=user.soundcloud%> </li>
+      	<li><h4>Facebook</h4> <%=user.facebook%> </li>
+        <li><h4>Twitter</h4> <%=user.twitter%> </li>
+        <li><h4>Bio:</h4> <%=user.bio%> </li>
     </ul>
+
+</div>
 
  <hr>
 <!-- list from SoundCloud of music genres -->

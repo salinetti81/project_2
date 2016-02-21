@@ -8,7 +8,7 @@ var SoundCloud = require('../models/soundcloud');
 router.get('/', function(req, res) {
     res.locals.login = req.isAuthenticated();
     User.find(function(err, data) {
-        res.render('./users/index.ejs', {users: data});
+        res.render('./index.ejs', {users: data});
     });
 });
 
