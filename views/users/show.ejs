@@ -10,18 +10,17 @@
 		<li><h1> <%= user.username %>'s Profile </h1></li>
 		<li><a href="/users/logout"><p>Logout</p></a></li>
 	</ul>
-
+  </nav>
 </header>
 
 <main>
 
-<h2>EXISTING USERS GO HERE ON LOGIN AND NEW USERS GO HERE AFTER FILLING OUT FORM FROM USERS/INDEX.EJS PAGE</h2>
 <!-- Logout link -->
 
 <!-- Move this to users/index page -->
-	<!-- <h4>Tell Us About Yourself</h4> -->
+	<h4>Tell Us About Yourself</h4>
 <!-- Needs to be in a serperate router from sign up form -->
-<!-- <div class="info_container" id= "info_container">
+<div class="info_container" id= "info_container">
 		<form action="/users/<%=user.id%>" method="POST"> 
 			<input type="text" name="img" placeholder="img url"><br>
 			<input type="text" name="instruments" placeholder="instruments"><br>
@@ -33,7 +32,7 @@
 			<button id= "submit_button" type="submit">Submit</button><br>
 		</form>
 </div>
-<br>	 -->
+<br>	
 
 <div class= "new_info">
 		 	<h4>This is the new info:</h4>
@@ -44,25 +43,48 @@
         <li><h4>Twitter</h4> <%=user.twitter%> </li>
         <li><h4>Bio:</h4> <%=user.bio%> </li>
     </ul>
-
 </div>
+ 	<hr>
 
- <hr>
 <!-- list from SoundCloud of music genres -->
 <!-- <ul id="results"> -->
 
 <!-- Pops open soundcloud login window. -->
-<a href="#" class="connect">Connect with SoundCloud</a>
+	<a href="#" class="connect">Connect with SoundCloud</a>
   <p>Hello, your name is <span id="username"></span></p>
 
 <!-- Sound cloud player widget -->
-  <div class="player" id="player"> </div> 
+ <div class="player" id="player"> </div> 
+
+<!-- Comments Section -->
+<div class= "comments_section">
+	<h4>Leave a Comment</h4>
+	<form action="/users/<%=user.id%>" method="POST"> 
+		<input type="text" name="name" placeholder="name"><br>
+		<input type="text" name="profile" placeholder="Profile URL"><br><br>
+		<textarea class="comments" name="comments" rows="15" cols="50" placeholder="Comments"></textarea><br/>
+		<button id= "comments_submit_button" type="submit">Submit</button><br>
+	</form>
+</div>
+
+<div class= "comments_results">
+		 	<h4>These are the comments:</h4>
+       <ul>
+      	<li><h4>Name:</h4> <%=comments.name%> </li>
+      	<li><h4>Profile:</h4> <%=comments.profile%> </li>
+      	<li><h4>Comments</h4> <%=comments.comments%> </li>
+        
+    </ul>
+</div>
+
+
 
   <!-- Delete Button -->
+  <br><hr><br><hr><br><hr>
 	<form action="/users/<%=user.id%>" method="POST">
     <input type="hidden" name="_method" value="DELETE">
     <button id="delete-button">Delete My Account</button>
-</form>
+	</form>
 </main>
 
 <% include ../partials/footer %>
@@ -77,3 +99,6 @@
     <b style="text-align: center;">This popup should automatically close in a few seconds</b>
   </body>
 </html> -->
+
+
+

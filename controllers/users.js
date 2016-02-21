@@ -3,6 +3,7 @@ var router = express.Router();
 var passport = require('passport');
 var User = require('../models/users');
 var SoundCloud = require('../models/soundcloud');
+var Comments = require('../models/comments')
 
 //INDEX
 router.get('/', function(req, res) {
@@ -32,19 +33,6 @@ router.get('/logout', function(req, res) {
     res.redirect('/users');
 });
 
-//SHOW PAGE FOR WHEN USER IS LOGGED IN
-router.get('/:id', isLoggedIn, function(req, res) {
-    //checks if the user is logged in
-    res.locals.usertrue = (req.user.is == req.params.id);
-    req.params.id == req.user.id ? res.locals.usertrue = true : res.locals.usertrue = false;
-    //list users
-    // User.find({}, function(err, users) {
-        //finds single user
-        User.findById(req.params.id, function(err, user) {
-            res.render('users/show.ejs', { user: user });
-        // });
-    });
-});
 
 // router.post('/:id/newinfo', function(req, res) {
 //     User.findById(req.params.id, function(err, user) {
@@ -58,21 +46,6 @@ router.get('/:id', isLoggedIn, function(req, res) {
 //     });
 // });
 
-// CREATE NEW USER
-    //PROCESS SIGNUP FORM
-router.post('/', passport.authenticate('local-signup', {
-    failureRedirect : '/users'}), function(req, res) { //redirect back to signup if there is an error
-        // res.redirect('users/index.ejs/' + req.user.id);
-        // console.log(users);
-        User.findById(req.params.id, function(err, user) {
-            res.render('users/index.ejs', { user: user });
-        // });
-    });
-});
-
-
-
-
 // router.post('/users', function(req, res) {
 //     User.findById(req.params.id, function(err, user) {
 //         var newUser = new User(req.body);
@@ -85,11 +58,15 @@ router.post('/', passport.authenticate('local-signup', {
 //     });
 // });
 
-    //PROCESS THE LOGIN FORM
+
+
+    //PROCESS THE LOGIN FORM- GOES TO USERS PROFILE PAGE
 router.post('/login', passport.authenticate('local-login', {
+
     // successRedirect : '/profile', // redirect to the secure profile section
    failureRedirect : '/users'}), function(req, res) { // redirect back to the signup page if there is an error
         res.redirect('/users/' + req.user.id);
+          // console.log("is logged in");
 });
 
 //define isLoggedIn
@@ -101,12 +78,39 @@ function isLoggedIn(req, res, next) {
 res.redirect('/');
 } ;
 
+// CREATE NEW USER
+    //PROCESS SIGNUP FORM- GOES TO INFO FORM PAGE
+router.post('/', passport.authenticate('local-signup', {
+    failureRedirect : '/users'}), function(req, res) { //redirect back to signup if there is an error
+        res.redirect('/users/' + req.user.id);
+        // console.log(users);
+    //     User.findById(req.params.id, function(err, user) {
+    //         res.render('users/index.ejs', { user: user });
+    //     // });
+    // });
+});
+
     //PROCESS INFO FORM
 router.post('/:id', function(req, res){
      console.log("This is req.body " + req.body);
      console.log("This is req.params.id " + req.params.id)
     User.findByIdAndUpdate(req.params.id, req.body, function(err, data) {
-        res.redirect('/users/' + req.params.id);
+        res.redirect('/users/' + req.user.id);
+    });
+});
+
+
+//SHOW PAGE FOR WHEN USER IS LOGGED IN
+router.get('/:id', isLoggedIn, function(req, res) {
+    //checks if the user is logged in
+    res.locals.usertrue = (req.user.is == req.params.id);
+    req.params.id == req.user.id ? res.locals.usertrue = true : res.locals.usertrue = false;
+    //list users
+    // User.find({}, function(err, users) {
+        //finds single user
+        User.findById(req.params.id, function(err, user) {
+            res.render('users/show.ejs', { user: user });
+        // });
     });
 });
 
