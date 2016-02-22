@@ -1,24 +1,23 @@
 <!DOCTYPE html>
 <html>
 	<% include ./partials/head %>
-<% include ./partials/nav %>
 <body>
-	
+<% include ./partials/nav %>
 
 <div class='main'>
 <h1 class="title">Welcome</h1>
 
-<!-- Needs to redirect to users/index page to fill out more information -->
+<!-- Redirects to users/index page to fill out more information -->
 <div class="sign_up_container">
 	<h4>Signup</h4>
-		<form action="/users/signup" method="POST">
-			<input type="text" name="username" placeholder="username"><br>
-			<input type="text" name="email" placeholder="email"><br>
-			<input type="text" name="password" placeholder="password"><br>
-			<button class="signup_submit" type="submit">Submit</button>
-		</form>
+	<form action="/users/signup" method="POST">
+		<input type="text" name="username" placeholder="username"><br>
+		<input type="text" name="email" placeholder="email"><br>
+		<input type="text" name="password" placeholder="password"><br>
+		<button class="signup_submit" type="submit">Submit</button>
+	</form>
 </div>
-<!-- if sign up for is filled out, go to this next form -->
+
 
 
 

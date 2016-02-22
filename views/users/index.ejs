@@ -11,18 +11,23 @@
 <h4>Tell Us About Yourself</h4>
 <!-- users fills out this form to create a profile -->
 <div class="info_container" id= "info_container">
-		<form action="/users/<%=user.id%>/index" method="POST"> 
-			<input type="text" name="img" placeholder="img url"><br>
-			<input type="text" name="instruments" placeholder="instruments"><br>
-			<input type="text" name="soundcloud" placeholder="SoundCloud Profile"><br>
-			<input type="text" name="twitter" placeholder="Twitter Profile"><br>
-			<input type="text" name="facebook" placeholder="Facebook Profile"><br><br>
-			<input type="hidden" name="_method" value="POST"/>
-			 <textarea class="bio" name="bio" rows="15" cols="50" placeholder="Bio"></textarea><br/>
-			<input class= "submit" type="submit">
-		</form>
+	<form action="/users/<%=user.id%>/index" method="POST">
+		<input type="text" name="img" placeholder="img url"><br>
+		<input type="text" name="instruments" placeholder="instruments"><br>
+		<input type="text" name="soundcloud" placeholder="SoundCloud Profile"><br>
+		<input type="text" name="twitter" placeholder="Twitter Profile"><br>
+		<input type="text" name="facebook" placeholder="Facebook Profile"><br><br>
+		<input type="hidden" name="_method" value="POST"/>
+		 <textarea class="bio" name="bio" rows="15" cols="50" placeholder="Bio"></textarea><br/>
+		<input class= "submit" type="submit">
+	</form>
 </div>
 
+<% include ../partials/footer %>
+</body>
+</html>
+
+<!-- Old Code -->
 
 <!-- Below here can be delted once all routes work -->
 	<!-- <h4>Signup</h4>
@@ -44,7 +49,3 @@
 		</form>
 
  -->
-
-<% include ../partials/footer %>
-</body>
-</html>

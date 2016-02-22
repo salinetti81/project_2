@@ -15,34 +15,29 @@
 	<ul>
 		<li><img src="<%= user.img%>"></li>
 		<li><h1> <%= user.username %>'s Profile </h1></li>
+		<!-- Logout/Redirect to Home page -->
 		<li><a href="/users/logout"><p>Logout</p></a></li>
+		<!-- Build an edit function and route -->
+		<li><a href="/users/id/signup"><p>Edit Your Account</p></a></li>
 	</ul>
   </nav>
 </header>
 
 <main>
 
-<!-- Logout link -->
-
-<!-- Move this to users/index page -->
-
-
-
-<!-- Deleted info form -->
-
-
 <br>	
 
 <div class= "new_info">
-		 	<h4>This is the new info:</h4>
-       <ul>
-      	<li><h4>Instruments:</h4> <%=user.instruments%> </li>
-      	<li><h4>SoundCloud:</h4> <%=user.soundcloud%> </li>
-      	<li><h4>Facebook</h4> <%=user.facebook%> </li>
-        <li><h4>Twitter</h4> <%=user.twitter%> </li>
-        <li><h4>Bio:</h4> <%=user.bio%> </li>
+	<h4>This is the new info:</h4>
+    <ul>
+    	<li><h4>Instruments: <%=user.instruments%> </h4></li>
+    	<li><h4>SoundCloud: <%=user.soundcloud%></h4> </li>
+    	<li><h4>Facebook: <%=user.facebook%> </h4></li>
+      <li><h4>Twitter: <%=user.twitter%> </h4></li>
+      <li><h4>Bio: <%=user.bio%> </h4></li>
     </ul>
 </div>
+<br>
  	<hr>
 
 <!-- list from SoundCloud of music genres -->
@@ -67,15 +62,23 @@
 </div>
 
 <div class= "comments_results">
-		 	<h4>These are the comments:</h4>
-
+	<!-- comments from above form go here -->
+	<div class= "new_info">
+	<h4>These are the comments:</h4>
+    <ul>
+    	<li><h4>Name:</h4> <%=user.name%> </li>
+    	<li><h4>Profile:</h4> <%=user.profile%> </li>
+    	<li><h4>Comments</h4> <%=user.comments%> </li>
+     
+    </ul>
+</div>
 </div>
 
 
 
-  <!-- Delete Button -->
-  <br><hr><br><hr><br><hr>
-	<form action="/users/<%=user.id%>" method="POST">
+  <!-- Delete Button; Needs to be distinctly seperate-->
+  <br><hr><br><hr><br><hr><br><hr><br><hr>
+	<form action="/users/<%=user.id%>/show" method="POST">
     <input type="hidden" name="_method" value="DELETE">
     <button id="delete-button">Delete My Account</button>
 	</form>
