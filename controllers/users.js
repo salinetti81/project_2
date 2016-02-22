@@ -58,7 +58,7 @@ router.get('/:id/', function(req, res) {
 router.post('/login', passport.authenticate('local-login', {
 // successRedirect : '/profile', // redirect to the secure profile section
 failureRedirect : '/users'}), function(req, res) { // redirect back to the signup page if there is an error
-    res.redirect('/users/' + req.user.id);
+    res.redirect('/users/' + req.user.id );
       // console.log("is logged in");
 });
 
@@ -89,11 +89,11 @@ router.post('/signup', passport.authenticate('local-signup', {
 });
 
     //PROCESS INFO FORM
-router.post('/:id', function(req, res){
+router.post('/:id/index', function(req, res){
      console.log("This is req.body " + req.body);
      console.log("This is req.params.id " + req.params.id)
     User.findByIdAndUpdate(req.params.id, req.body, function(err, data) {
-        res.redirect('/users/' + req.user.id);
+        res.redirect('/users/' + req.user.id );
     });
 });
 
