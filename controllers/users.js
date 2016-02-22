@@ -40,52 +40,8 @@ router.get('/logout', function(req, res) {
     res.redirect('/users');
 });
 
-    //PROCESS THE LOGIN FORM- GOES TO USERS PROFILE PAGE
-router.post('/login', passport.authenticate('local-login', {
-
-// successRedirect : '/profile', // redirect to the secure profile section
-failureRedirect : '/users'}), function(req, res) { // redirect back to the signup page if there is an error
-    res.redirect('/users/' + req.user.id);
-      // console.log("is logged in");
-});
-
-// CREATE NEW USER
-    //PROCESS SIGNUP FORM- GOES TO INFO FORM PAGE
-router.post('/signup', passport.authenticate('local-signup', {
-    failureRedirect : '/users'}), function(req, res) { //redirect back to signup if there is an error
-        res.redirect('/users/' + req.user.id);
-        // console.log(users);
-        // User.findById(req.params.id, function(err, user) {
-        //     res.render('users/index.ejs', { user: user });
-        // });
-    // });
-});
-
-//INDEX PAGE WHEN A NEW USER SIGNS UP
-router.get('/:id', function(req, res) {
-    //checks if the user is logged in
-    res.locals.usertrue = (req.user.is == req.params.id);
-    req.params.id == req.user.id ? res.locals.usertrue = true : res.locals.usertrue = false;
-    //list users
-    // User.find({}, function(err, users) {
-        //finds single user
-        User.findById(req.params.id, function(err, user) {
-            res.render('users/index.ejs', { user: user });
-        // });
-    });
-});
-
-    //PROCESS INFO FORM
-router.post('/:id', function(req, res){
-     console.log("This is req.body " + req.body);
-     console.log("This is req.params.id " + req.params.id)
-    User.findByIdAndUpdate(req.params.id, req.body, function(err, data) {
-        res.redirect('/users/' + req.user.id);
-    });
-});
-
 //SHOW PAGE FOR WHEN USER IS LOGGED IN
-router.get('/:id', isLoggedIn, function(req, res) {
+router.get('/:id/', function(req, res) {
     //checks if the user is logged in
     res.locals.usertrue = (req.user.is == req.params.id);
     req.params.id == req.user.id ? res.locals.usertrue = true : res.locals.usertrue = false;
@@ -98,7 +54,50 @@ router.get('/:id', isLoggedIn, function(req, res) {
     });
 });
 
-//define isLoggedIn
+    //PROCESS THE LOGIN FORM- GOES TO USERS PROFILE PAGE
+router.post('/login', passport.authenticate('local-login', {
+// successRedirect : '/profile', // redirect to the secure profile section
+failureRedirect : '/users'}), function(req, res) { // redirect back to the signup page if there is an error
+    res.redirect('/users/' + req.user.id);
+      // console.log("is logged in");
+});
+
+//INDEX PAGE WHEN A NEW USER SIGNS UP
+router.get('/:id/index', function(req, res) {
+    //checks if the user is logged in
+    res.locals.usertrue = (req.user.is == req.params.id);
+    req.params.id == req.user.id ? res.locals.usertrue = true : res.locals.usertrue = false;
+    //list users
+    User.find({}, function(err, users) {
+        //finds single user
+        User.findById(req.params.id, function(err, user) {
+            res.render('users/index.ejs', { user: user });
+        });
+    });
+});
+
+// CREATE NEW USER
+    //PROCESS SIGNUP FORM- GOES TO INFO FORM PAGE
+router.post('/signup', passport.authenticate('local-signup', {
+    failureRedirect : '/users'}), function(req, res) { //redirect back to signup if there is an error
+        res.redirect('/users/' + req.user.id + '/index');
+        // console.log(users);
+        // User.findById(req.params.id, function(err, user) {
+        //     res.render('users/index.ejs', { user: user });
+        // });
+    // });
+});
+
+    //PROCESS INFO FORM
+router.post('/:id', function(req, res){
+     console.log("This is req.body " + req.body);
+     console.log("This is req.params.id " + req.params.id)
+    User.findByIdAndUpdate(req.params.id, req.body, function(err, data) {
+        res.redirect('/users/' + req.user.id);
+    });
+});
+
+//defines isLoggedIn
 function isLoggedIn(req, res, next) {
     //if user exists, do this
     if (req.isAuthenticated())
@@ -106,7 +105,6 @@ function isLoggedIn(req, res, next) {
     //if user doesn't exists, go here
 res.redirect('/');
 } ;
-
 
 router.delete('/:id', function(req,res){
     console.log("This is delete " + req.params.id)
