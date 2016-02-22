@@ -20,10 +20,17 @@ router.get('/json', function(req, res) {
     });
 });
 
-//SINGLE JSON 
+//USER JSON 
 router.get('/:id/json', function(req, res) {
     User.findById(req.params.id, function(err, user) {
         res.send(user);
+    });
+});
+
+//Comments JSON
+router.get('/:id/json', function(req, res) {
+    Comments.findById(req.params.id, function(err, comments) {
+        res.send(comments);
     });
 });
 
@@ -82,7 +89,7 @@ res.redirect('/');
     //PROCESS SIGNUP FORM- GOES TO INFO FORM PAGE
 router.post('/', passport.authenticate('local-signup', {
     failureRedirect : '/users'}), function(req, res) { //redirect back to signup if there is an error
-        res.redirect('/users/' + req.user.id);
+        res.redirect('/index/' + req.user.id);
         // console.log(users);
     //     User.findById(req.params.id, function(err, user) {
     //         res.render('users/index.ejs', { user: user });

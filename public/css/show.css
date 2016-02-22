@@ -2,41 +2,38 @@
 	padding: 0;
 	margin: 0;
 }
+
 body {
 	background-color: snow;
 	margin: auto;
 	padding: auto;
 	/*background-image: url("https://musicpage.s3.amazonaws.com/uploads/groups/group_photo/photo/5404c5a8373438000cc10000/pb_studio_008_web_0.jpg");*/
-	background-image: url("http://thequeenspub.com/wp-content/uploads/2015/03/Live-music-bg.jpg");
-	background-repeat: no-repeat;
-	background-size: auto auto;
-	color: white;
 
 }
 
 main {
 	padding-top: 200px;
-	padding-left: 50%;
+	padding-left: 10%;
 }
 
-.title {
+/*.title {
 	margin: 30px;
-}
+}*/
 
 .player {
 	width: 350px;
 	margin-left: 10%;
 }
 
-footer {
+/*footer {
 	padding-top: ;
 	/*background-color: rgb(38, 38, 38);*/
 
-}
+/*}*/
 
 header {
-	/*background-color: rgb(38, 38, 38);*/
-	height: 100%;
+	background-color: rgb(38, 38, 38);
+	height: 18%;
 }
 
 .show_header {
@@ -50,27 +47,19 @@ header {
 	border-bottom: 1px solid black;
 }
 
-.login {
+/*.login {
 	float: right;
 	margin-right: 10%;
 	margin-top: 50px;
 	display: inline-block;
 
-}
+}*/
 
-header button {
+/*.login input {
 	height: 30px;
-	width: 7em;
-	cursor: pointer;
-}
+}*/
 
-.login input {
-	height: 30px;
-	padding: 2px 5px;
-
-}
-
-.sign_up_container {
+./*sign_up_container {
 	color: black;
 	text-align: center;
 	background-color: white;
@@ -90,7 +79,7 @@ header button {
 	width: 200px;
 	padding: 5px;
 	margin-top: 15px;
-}
+}*/
 
 a {
 	text-decoration: none;
@@ -123,24 +112,3 @@ input {
 	margin-left: 10%;
 	padding: 10px;
 }
-
-.signup_submit {
-	height: 50px;
-	width: 10em;
-	color: black;
-	margin-top: 15px;
-	cursor: pointer;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-

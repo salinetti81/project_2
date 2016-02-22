@@ -1,33 +1,28 @@
 <!DOCTYPE html>
 <html>
 	<% include ./partials/head %>
+<% include ./partials/nav %>
 <body>
-	<% include ./partials/nav %>
+	
 
-<h1>Main index page</h1>
+<div class='main'>
+<h1 class="title">Welcome</h1>
 
 <!-- needs to redirect to users/index page to fill out more information -->
+<div class="sign_up_container">
 	<h4>Signup</h4>
 		<form action="/users/" method="POST">
-			<input type="text" name="username" placeholder="username">
-			<input type="text" name="email" placeholder="email">
-			<input type="text" name="password" placeholder="password">
-			<input type="submit">
+			<input type="text" name="username" placeholder="username"><br>
+			<input type="text" name="email" placeholder="email"><br>
+			<input type="text" name="password" placeholder="password"><br>
+			<button class="signup_submit" type="submit">Submit</button>
 		</form>
-
+</div>
 <!-- if sign up for is filled out, go to this next form -->
 
 
-<!-- Goes directly to users profile/show page -->
-	<h4>Login</h4>
-		<form action="/users/login" method="POST">
-			<input type="text" name="username" placeholder="username">
-			<input type="text" name="password" placeholder="password">
-			<input type="submit">
-		</form>
 
+</div>
 
-
-<% include ./partials/footer %>
 </body>
 </html>

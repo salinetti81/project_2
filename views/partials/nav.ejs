@@ -1,11 +1,25 @@
 <header>
-	<h1>Welcome</h1>
-		<nav>
-			<ul>
+	<!-- <h1>Welcome</h1>
+		<nav> -->
+			<!-- <ul>
 				<li>Sign Up</li>
 				<li>Sign In</li>
 				<li>About</li>
-			</ul>
-			<hr>
+			</ul> -->
+			<!-- Goes directly to users profile/show page -->
+	
+
+	<div class="login">
+	<ul>
+	
+		<form action="/users/login" method="POST">
+			<li><h4>Login</h4></li>
+			<li><input type="text" name="username" placeholder="username"></li>
+			<li><input type="text" name="password" placeholder="password"></li>
+			<li><button type="submit">Submit</button></li>
+		</form>
+		</ul>
+	</div>
+			
 		</nav>
-</header?
+</header>
