@@ -18,16 +18,20 @@ body {
 	padding-left: ;*/
 }
 
-/*main {*/
-	/*padding-top: 200px;
-	padding-left: 10%;
-}*/
-
-.player {
-	width: 350px;
-	margin-left: 10%;
+main {
+	/*padding-top: 200px;*/
+	padding-left: 5%;
 }
 
+.nav_links {
+	float: right;
+	margin-right: 50px;
+
+}
+
+.nav_links li {
+	padding-left: 50px;
+}
 
 .show_header {
 	background-color: white;
@@ -61,32 +65,9 @@ li {
 	padding-left: 10px;
 }
 
-.info_container {
-	text-align: center;
-	border-radius: 5px;
+.new_info {
+	margin-top: 200px;
 	width: 25em;
-	margin-left: 30%;
-	padding: 10px;
-}
-
-.info_container input {
-	height: 30px;
-	width: 150px;
-	padding: 2px 5px;
-	margin-bottom: 20px;
-}
-
-.info_submit {
-	height: 50px;
-	width: 10em;
-	color: black;
-	margin-top: 15px;
-	cursor: pointer;
-}
-
-.edit_title {
-	margin-right: 65%;
-	font-size: 40px;
 }
 
 textarea {
@@ -96,8 +77,19 @@ textarea {
 .delete_button {
 	float: right;
 	margin-top: 100px;
-	margin-right: 10%;
+	margin-right: 20%;
 }
+
+.container {
+  display:inline-flex;
+}
+
+.player {
+	width: 350px;
+	margin-right: 10% ;
+	margin-top: 100px;
+}
+
 
 .members_container h2 {
 	margin-left: 50%;
@@ -117,6 +109,14 @@ textarea {
 	background-color: grey;
 	opacity: .4;
 }
+
+
+.members_container {
+	margin-right: 1%;
+ 
+}
+
+
 
 footer {
 

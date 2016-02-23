@@ -14,17 +14,16 @@
 	<nav>
 	<ul>
 		<li><img src="<%= user.img%>"></li>
-		<li><h1> <%= user.username %>'s Profile </h1></li>
-		<!-- Logout/Redirect to Home page -->
+		<li><h1> <%= user.username %> </h1></li>
+		</ul>
+
+    <ul class="nav_links">
+     <!-- Build an edit function and route -->
+    <li><a class="edit_button" href="<%= user.id %>/edit">   Edit Your Profile <%= user.name %> </a></li>
+    <!-- Logout/Redirect to Home page -->
 		<li><a href="/users/logout"><p>Logout</p></a></li>
-		<!-- Build an edit function and route -->
-		<a class="edit_button" href="<%= user.id %>/edit">   Edit Your Profile <%= user.name %> </a></li>
-  <div class='delete_button'>
-<form action="/users/<%=user.id%>/index" method="POST">
-    <input type="hidden" name="_method" value="DELETE">
-    <button id="delete-button">Delete My Account</button>
-  </form>
-  </div></li>
+
+
 	</ul>
   </nav>
 </header>
@@ -34,12 +33,11 @@
 <br>	
 
 <div class= "new_info">
-	<h4>This is the new info:</h4>
     <ul>
-    	<li><h4>Instruments: <%=user.instruments%> </h4></li>
-    	<li><h4>SoundCloud: <%=user.soundcloud%></h4> </li>
-    	<li><h4>Genre: <%=user.genre%> </h4></li>
-      <li><h4>Looking for: <%=user.looking%> </h4></li>
+    	<li><h4>Instruments: <%=user.instruments%> </h4></li><br>
+    	<li><h4>SoundCloud: <a href="<%=user.soundcloud%>"></a></h4> </li><br>
+    	<li><h4>Genre: <%=user.genre%> </h4></li><br>
+      <li><h4>Looking for: <%=user.looking%> </h4></li><br>
       <li><h4>Bio: <%=user.bio%> </h4></li>
     </ul>
 </div>
@@ -47,33 +45,32 @@
  
 <br><br>
 
-<div class="members_container">
+<div class="container">  
+<!-- list from SoundCloud of music genres -->
+<!-- <ul id="results"> -->
+
+<!-- Pops open soundcloud login window. -->
+  <a href="#" class="connect">Connect with SoundCloud</a>
+ <!--  <p>Hello, your name is <span id="username"></span></p> -->
+
+<!-- Sound cloud player widget -->
+ <div class="player" id="player"> </div> 
+
+ <div class="members_container">
 <h2>Users</h2>
  <ul>
   <% for (var i=0; i < user.length; i ++) { %>
     <li><%= user[i].username %></li>
     <% } %>
 </ul>        
-</div>     
-
-
-<!-- list from SoundCloud of music genres -->
-<!-- <ul id="results"> -->
-
-<!-- Pops open soundcloud login window. -->
-  <a href="#" class="connect">Connect with SoundCloud</a>
-  <p>Hello, your name is <span id="username"></span></p>
-
-<!-- Sound cloud player widget -->
- <div class="player" id="player"> </div> 
-
+</div>   
+</div>
 
  <!-- Comments Section -->
 <div class= "comments_section">
   <h4>Leave a Comment</h4>
   <form action="/users/<%=user.id%>/comments" method="POST">
     <input type="text" name="name" placeholder="name"><br><br>
-    <!-- <input type="text" name="profile" placeholder="Profile URL"><br><br> -->
     <textarea class="comments" name="comments" rows="15" cols="50" placeholder="Comments"></textarea><br/>
   <input type="hidden" name="profileId" value="<%= user.id %>">
     <button id= "comments_submit_button" type="submit">Submit</button><br>
@@ -100,7 +97,15 @@
 
 </main>
 <br><br>
-<% include ../partials/footer %>
+<footer>
+  <hr>
+   <div class='delete_button'>
+<form action="/users/<%=user.id%>/index" method="POST">
+    <input type="hidden" name="_method" value="DELETE">
+    <button id="delete-button">Delete My Account</button>
+  </form>
+  </div>
+</footer>
 </body>
 </html>
 
