@@ -60,7 +60,7 @@
   <h4>Here is a list of the other members:</h4>
  <ul>
   <% for (var i=0; i < user.length; i ++) { %>
-    <li><%= user[i].username %></li>
+    <li><%= username %></li>
     <% } %>
 </ul>        
 </div>     
@@ -95,12 +95,11 @@
   <!-- comments from above form go here -->
 
   <h4>These are the comments:</h4>
-  <% for(var i = 0; i < user.length; i ++) { %>
-
+  <% for(var i = 0; i < user.comments.length; i ++) { %>
     <ul>
-      <li><h4>Name:</h4> <%=user[i].name%> </li>
-      <li><h4>Profile:</h4> <%=user[i].profile%> </li>
-      <li><h4>Comments</h4> <%=user[i].comments%> </li>
+      <li><h4>Name:</h4> <%=user.comments[i].name%> </li>
+      <li><h4>Profile:</h4> <%=user.comments[i].profile%> </li>
+      <li><h4>Comments</h4> <%=user.comments[i].comments%> </li>
     </ul>
 <% } %>
 </div>

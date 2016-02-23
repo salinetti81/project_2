@@ -54,8 +54,8 @@ router.get('/logout', function(req, res) {
 //SHOW PAGE FOR WHEN USER IS LOGGED IN
 router.get('/:id/', function(req, res) {
   //checks if the user is logged in
-  res.locals.usertrue = (req.user.id == req.params.id);
-  req.params.id == req.user.id ? res.locals.usertrue = true : res.locals.usertrue = false;
+  // res.locals.usertrue = (req.user.id == req.params.id);
+  // req.params.id == req.user.id ? res.locals.usertrue = true : res.locals.usertrue = false;
   //list users
   // User.find({}, function(err, users) {
     //finds single user
@@ -111,19 +111,19 @@ router.post('/:id/index', function(req, res){
 
 //comment
 router.post('/:id/comments', function(req, res) {
-  Comments.findByIdAndUpdate(req.params.id, req.body, function(err, comments) {
+  // Comments.findByIdAndUpdate(req.params.id, req.body, function(err, comments) {
     User.findById(req.params.id, function(err, user) {
 
-  var newComment = new Comments(req.body);
-  newComment.save(function(err, comments) {
-    user.comments.push(comments);
-     user.save(function(err) {
-      console.log('user saved');
-      res.redirect('/users/' + req.params.id );
+      var newComment = new Comments(req.body);
+      newComment.save(function(err, comments) {
+      user.comments.push(comments);
+       user.save(function(err) {
+        console.log('user saved');
+        res.redirect('/users/' + req.params.id );
+         });
        });
-     });
    });
-  });
+  // });
 });
 
 router.get('/', function(req, res) {

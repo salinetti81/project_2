@@ -14,8 +14,8 @@ var userSchema = mongoose.Schema({
 	soundcloud: String, //[soundCloudSchema],
 	twitter: String, //url
 	facebook: String, //url
-	comments: [commentsSchema],
-	members: [membersSchema]
+	comments: [commentsSchema]
+	// members: [membersSchema]
 });
 
 // methods ======================
