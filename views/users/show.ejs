@@ -53,8 +53,7 @@
 <!-- Comments Section -->
 <div class= "comments_section">
 	<h4>Leave a Comment</h4>
-	<form action="/users/<%=user.id%>/comments" method="POST"> 
-
+	<form action="/users/<%=user.id%>/comments" method="POST">
 		<input type="text" name="name" placeholder="name"><br><br>
 		<input type="text" name="profile" placeholder="Profile URL"><br><br>
 		<textarea class="comments" name="comments" rows="15" cols="50" placeholder="Comments"></textarea><br/>
@@ -72,6 +71,27 @@
     	<li><h4>Profile:</h4> <%=user.profile%> </li>
     	<li><h4>Comments</h4> <%=user.comments%> </li>
     </ul>
+
+</div>
+
+<br><br>
+  <h4>Here is a list of other members:</h4>
+ <div clas="members_list">
+            <% for (var i=0; i < user.members.length; i++) { %>
+              <div class="members">
+                <p><%= user.members[i].name %></p>
+              </div>
+            <% } %>
+          </div>
+
+          <% if (usertrue) { %> 
+            <form action="/users/<%= user.id %>" method="POST">
+            
+            
+            </form>
+          <% } %>
+      </div>
+
 
 </div>
 

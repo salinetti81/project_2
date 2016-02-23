@@ -131,8 +131,36 @@ router.get('/', function(req, res) {
 });
 });
 
+// Json for members
+router.get('/json', function(req, res) {
+  Members.find(function(err, members) {
+    res.send(members);
+  });
+});
 
 // Members List on Users Profile Page
+// members index
+router.get('/', isLoggedIn, function(req, res) {
+  Members.find(function(err, members) {
+    res.render('members/index.ejs', 
+      {members: members});
+  });
+});
+
+// saves a new location to the Location model and the User's locations list
+router.post('/:id/newmember', function(req, res) {
+  User.findById(req.params.id, function(err, user) {
+    var member = new Members(req.body);
+    member.save(function(err, member) {
+      user.members.push(member);
+      user.save(function(err, user) {
+        res.redirect('/users/' + req.params.id);
+      });     
+    });
+  });
+});
+
+
 
 // A user needs to be able to edit thier OWN page
 // // EDIT
@@ -211,11 +239,34 @@ function isLoggedIn(req, res, next) {
 
 //delete user
 router.delete('/:id/index', function(req,res){
-  console.log("This is delete " + req.params.id)
+  console.log("This has been deleted " + req.params.id)
   User.findByIdAndRemove(req.params.id, function(err, user){
     res.redirect('/users/');
   })
 });
+
+
+//////////THIS TYPE OF DELETE FEATURE MIGHT BE NEEDED LATER ON/////////////
+// // delete 
+// router.delete('/:id', function(req, res) {
+//   console.log('DELETE ROUTE ACCESSED');
+//   User.findById(req.params.id, function(err, user) {
+//     if (user.locations.length == 0) {
+//       user.remove(function(err) {
+//         res.redirect('/users');
+//       });
+//     } else {
+//       user.locations.forEach(function(location) {
+//         Location.findOneAndRemove({ _id: location.id }, function(err) {
+//           if (err) console.log(err);
+//         });
+//       });
+//       user.remove(function(err) {
+//         res.redirect('/users');
+//       });
+//     } // end if
+//   }); // end User find
+// });
 
 module.exports = router;
 

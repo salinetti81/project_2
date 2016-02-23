@@ -46,9 +46,10 @@ require('./config/passport.js')(passport);
 
 app.use('/users', usersController);
 app.use('/comments', commentsController);
-//app.use('/members', membersController);
+app.use('/members', membersController);
 // app.use('/users', soundCloudController);
 
+//redirect to user index
 app.get('/', function(req, res) {
 	res.redirect('/users');
 });
