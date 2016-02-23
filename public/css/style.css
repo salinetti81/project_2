@@ -166,7 +166,14 @@ input {
 }
 
 
+.slide_button {
+	height: 30px;
+	width: 7em;
+	cursor: pointer;
+	margin-left: 45%;
+	margin-top: 40px;
 
+}
 
 
 

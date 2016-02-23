@@ -51,6 +51,10 @@ router.get('/logout', function(req, res) {
   res.redirect('/users');
 });
 
+router.get('/edit', function(req, res) {
+  res.send("This works");
+});
+
 //SHOW PAGE FOR WHEN USER IS LOGGED IN
 router.get('/:id/', function(req, res) {
   //checks if the user is logged in
@@ -60,11 +64,25 @@ router.get('/:id/', function(req, res) {
   // User.find({}, function(err, users) {
     //finds single user
     User.findById(req.params.id, function(err, user) {
-      console.log(user);
+      // console.log(user);
       res.render('users/show.ejs', { user: user });
       // });
   });
 });
+
+// A user needs to be able to edit thier OWN page
+// // EDIT
+router.get('/:id/edit', function(req, res) {
+  User.findByIdAndUpdate(req.params.id, req.body, {new: true}, function(err, user) {
+     res.render('users/edit.ejs', { user: user });
+  });
+  // for(var i = 0; i < User.length; i++) {
+  //   if(User[i].id == req.params.id) {
+     
+  //   }
+  // }
+});
+
 
 //PROCESS THE LOGIN FORM- GOES TO USERS PROFILE PAGE
 router.post('/login', passport.authenticate('local-login', {
@@ -77,7 +95,7 @@ failureRedirect : '/users'}), function(req, res) { // redirect back to the signu
 //INDEX PAGE WHEN A NEW USER SIGNS UP
 router.get('/:id/index', function(req, res) {
   //checks if the user is logged in
-  res.locals.usertrue = (req.user.is == req.params.id);
+  res.locals.usertrue = (req.user.id == req.params.id);
   req.params.id == req.user.id ? res.locals.usertrue = true : res.locals.usertrue = false;
   //list users
   User.find({}, function(err, users) {
@@ -136,46 +154,49 @@ router.get('/', function(req, res) {
 });
 });
 
-// Json for members
-router.get('/json', function(req, res) {
-  Members.find(function(err, members) {
-    res.send(members);
-  });
-});
+// // Json for members
+// router.get('/json', function(req, res) {
+//   Members.find(function(err, members) {
+//     res.send(members);
+//   });
+// });
 
 // Members List on Users Profile Page
 // members index
-router.get('/', isLoggedIn, function(req, res) {
-  Members.find(function(err, members) {
-    res.render('members/index.ejs', 
-      {members: members});
-  });
-});
-
-// saves a new location to the Location model and the User's locations list
-router.post('/:id/newmember', function(req, res) {
-  User.findById(req.params.id, function(err, user) {
-    var member = new Members(req.body);
-    member.save(function(err, member) {
-      user.members.push(member);
-      user.save(function(err, user) {
-        res.redirect('/users/' + req.params.id);
-      });     
-    });
-  });
-});
-
-
-
-// A user needs to be able to edit thier OWN page
-// // EDIT
-// router.get('/:id/edit', function(req, res) {
-//   for(var i = 0; i < User.data.length; i++) {
-//     if(User.data[i].id == req.params.id) {
-//       res.render('edit.ejs', User.data[i])
-//     }
-//   }
+// router.get('/', isLoggedIn, function(req, res) {
+//   Members.find(function(err, members) {
+//     res.render('members/index.ejs', 
+//       {members: members});
+//   });
 // });
+
+// // saves a new member to the member model and the User's list
+// router.post('/:id/newmember', function(req, res) {
+//   User.findById(req.params.id, function(err, user) {
+//     var member = new Members(req.body);
+//     member.save(function(err, member) {
+//       user.members.push(member);
+//       user.save(function(err, user) {
+//         res.redirect('/users/' + req.params.id);
+//       });     
+//     });
+//   });
+// });
+
+
+// router.get('/:id/edit', function(req, res) {
+//   //checks if the user is logged in
+//   res.locals.usertrue = (req.user.id == req.params.id);
+//   req.params.id == req.user.id ? res.locals.usertrue = true : res.locals.usertrue = false;
+//   //list users
+//   User.find({}, function(err, users) {
+//     //finds single user
+//     User.findById(req.params.id, function(err, user) {
+//         res.render('users/edit.ejs', { user: user });
+//     });
+//   });
+// });
+
 
 // //User
 // router.put('/:id', function(req, res) {

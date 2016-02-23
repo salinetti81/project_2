@@ -7,6 +7,7 @@ body {
 	background-color: snow;
 	margin: auto;
 	padding: auto;
+	font-family: sans-serif;
 	
 
 }
@@ -24,6 +25,7 @@ main {
 header {
 	background-color: rgb(38, 38, 38);
 	height: 18%;
+	z-index: 1;
 }
 
 .show_header {
@@ -71,7 +73,25 @@ li {
 	margin-right: 10%;
 }
 
-.members_container {
-	margin-left: 65%;
-	position: fixed;
+.members_container h2 {
+	margin-left: 50%;
+	/*position: fixed;*/
+	text-align: center;
+	z-index: -1;
+}
+
+.members_container ul {
+	margin-top: 30px;
+	margin-left: 60%;
+	margin-bottom: 200px;
+	z-index: -1;
+	/*position: fixed;*/
+	height: 500px;
+	width: 20em;
+	background-color: grey;
+	opacity: .4;
+}
+
+footer {
+
 }
