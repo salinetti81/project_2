@@ -1,6 +1,20 @@
 $(document).ready(function() {
 console.log("Don't Panic");
 
+$("#start").click(function() {
+  $("main").slideUp("slow", function() {
+    // Animation complete.
+  });
+ console.log("clicks");
+});
+
+$("#top").click(function() {
+  $("main").slideDown("slow", function() {
+    // Animation complete.
+  });
+ console.log("top clicks");
+});
+
 
 // SC.initialize({
 //   client_id: 'YOUR_CLIENT_ID'

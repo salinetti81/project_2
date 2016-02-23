@@ -54,18 +54,19 @@ router.get('/logout', function(req, res) {
 //SHOW PAGE FOR WHEN USER IS LOGGED IN
 router.get('/:id/', function(req, res) {
   //checks if the user is logged in
-  res.locals.usertrue = (req.user.is == req.params.id);
+  res.locals.usertrue = (req.user.id == req.params.id);
   req.params.id == req.user.id ? res.locals.usertrue = true : res.locals.usertrue = false;
   //list users
   // User.find({}, function(err, users) {
     //finds single user
     User.findById(req.params.id, function(err, user) {
+      console.log(user);
       res.render('users/show.ejs', { user: user });
       // });
   });
 });
 
-    //PROCESS THE LOGIN FORM- GOES TO USERS PROFILE PAGE
+//PROCESS THE LOGIN FORM- GOES TO USERS PROFILE PAGE
 router.post('/login', passport.authenticate('local-login', {
 // successRedirect : '/profile', // redirect to the secure profile section
 failureRedirect : '/users'}), function(req, res) { // redirect back to the signup page if there is an error
@@ -111,13 +112,17 @@ router.post('/:id/index', function(req, res){
 //comment
 router.post('/:id/comments', function(req, res) {
   Comments.findByIdAndUpdate(req.params.id, req.body, function(err, comments) {
-    var newComment = new Comments(req.body);
-    newComment.save(function(err, comments) {
-      // user.comments.push(comments);
-      // user.save(function(err) {
-        res.redirect('/users/' + req.params.id );
-      // });
-    });
+    User.findById(req.params.id, function(err, user) {
+
+  var newComment = new Comments(req.body);
+  newComment.save(function(err, comments) {
+    user.comments.push(comments);
+     user.save(function(err) {
+      console.log('user saved');
+      res.redirect('/users/' + req.params.id );
+       });
+     });
+   });
   });
 });
 

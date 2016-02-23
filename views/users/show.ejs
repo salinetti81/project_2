@@ -18,7 +18,14 @@
 		<!-- Logout/Redirect to Home page -->
 		<li><a href="/users/logout"><p>Logout</p></a></li>
 		<!-- Build an edit function and route -->
-		<li> <a class="edit_button" href="/users/<%= user %>/edit">   Edit Your Profile <%= user.name %> </a></li>
+		<a class="edit_button" href="/users/<%= user %>/edit">   Edit Your Profile <%= user.name %> </a></li>
+  <div class='delete_button'>
+
+  <form action="/users/<%=user.id%>/index" method="POST">
+    <input type="hidden" name="_method" value="DELETE">
+    <button id="delete-button">Delete My Account</button>
+  </form>
+  </div></li>
 	</ul>
   </nav>
 </header>
@@ -40,65 +47,70 @@
 <br>
  	<hr>
 
+
+
+
+
+
+<br><br>
+
+
+
+<div class="members_container">
+  <h4>Here is a list of the other members:</h4>
+ <ul>
+  <% for (var i=0; i < user.length; i ++) { %>
+    <li><%= user[i].username %></li>
+    <% } %>
+</ul>        
+</div>     
+
+
+
 <!-- list from SoundCloud of music genres -->
 <!-- <ul id="results"> -->
 
 <!-- Pops open soundcloud login window. -->
-	<a href="#" class="connect">Connect with SoundCloud</a>
+  <a href="#" class="connect">Connect with SoundCloud</a>
   <p>Hello, your name is <span id="username"></span></p>
 
 <!-- Sound cloud player widget -->
  <div class="player" id="player"> </div> 
 
-<!-- Comments Section -->
+
+
+
+ <!-- Comments Section -->
 <div class= "comments_section">
-	<h4>Leave a Comment</h4>
-	<form action="/users/<%=user.id%>/comments" method="POST">
-		<input type="text" name="name" placeholder="name"><br><br>
-		<input type="text" name="profile" placeholder="Profile URL"><br><br>
-		<textarea class="comments" name="comments" rows="15" cols="50" placeholder="Comments"></textarea><br/>
-	<input type="hidden" name="profileId" value="<%= user.id %>">
-		<button id= "comments_submit_button" type="submit">Submit</button><br>
-	</form>
-</div>
-<br><br>
-<div class= "comments_results">
-	<!-- comments from above form go here -->
+  <h4>Leave a Comment</h4>
+  <form action="/users/<%=user.id%>/comments" method="POST">
+    <input type="text" name="name" placeholder="name"><br><br>
+    <input type="text" name="profile" placeholder="Profile URL"><br><br>
+    <textarea class="comments" name="comments" rows="15" cols="50" placeholder="Comments"></textarea><br/>
+  <input type="hidden" name="profileId" value="<%= user.id %>">
+    <button id= "comments_submit_button" type="submit">Submit</button><br>
+  </form>
 
-	<h4>These are the comments:</h4>
+  <div class= "comments_results">
+  <!-- comments from above form go here -->
+
+  <h4>These are the comments:</h4>
+  <% for(var i = 0; i < user.length; i ++) { %>
+
     <ul>
-    	<li><h4>Name:</h4> <%=user.name%> </li>
-    	<li><h4>Profile:</h4> <%=user.profile%> </li>
-    	<li><h4>Comments</h4> <%=user.comments%> </li>
+      <li><h4>Name:</h4> <%=user[i].name%> </li>
+      <li><h4>Profile:</h4> <%=user[i].profile%> </li>
+      <li><h4>Comments</h4> <%=user[i].comments%> </li>
     </ul>
-
+<% } %>
 </div>
-
+</div>
 <br><br>
-  <h4>Here is a list of the other members:</h4>
- <div clas="members_list">
-            <% for (var i=0; i < user.members.length; i++) { %>
-              <div class="members">
-                <p><%= user.members[i].name %></p>
-              </div>
-            <% } %>
-          </div>
 
 
-
-</div>
-
-
-
-
-<!-- Need a list of users -->
 
   <!-- Delete Button; Needs to be distinctly seperate-->
-  <br><br><br><br><br><br><br>
-	<form action="/users/<%=user.id%>/index" method="POST">
-    <input type="hidden" name="_method" value="DELETE">
-    <button id="delete-button">Delete My Account</button>
-	</form>
+
 </main>
 <br><br>
 <% include ../partials/footer %>

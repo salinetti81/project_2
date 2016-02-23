@@ -7,7 +7,7 @@ body {
 	background-color: snow;
 	margin: auto;
 	padding: auto;
-	/*background-image: url("https://musicpage.s3.amazonaws.com/uploads/groups/group_photo/photo/5404c5a8373438000cc10000/pb_studio_008_web_0.jpg");*/
+	
 
 }
 
@@ -16,20 +16,10 @@ main {
 	padding-left: 10%;
 }
 
-/*.title {
-	margin: 30px;
-}*/
-
 .player {
 	width: 350px;
 	margin-left: 10%;
 }
-
-/*footer {
-	padding-top: ;
-	/*background-color: rgb(38, 38, 38);*/
-
-/*}*/
 
 header {
 	background-color: rgb(38, 38, 38);
@@ -46,40 +36,6 @@ header {
 	position: fixed;
 	border-bottom: 1px solid black;
 }
-
-/*.login {
-	float: right;
-	margin-right: 10%;
-	margin-top: 50px;
-	display: inline-block;
-
-}*/
-
-/*.login input {
-	height: 30px;
-}*/
-
-./*sign_up_container {
-	color: black;
-	text-align: center;
-	background-color: white;
-	width: 15em;
-	height: 300px;
-	padding-left: 1px ;
-	padding-top: 10px;
-	padding-bottom: 0;
-	margin-left: 35%;
-	margin-top: 80px;
-	border-radius: 5px;
-	opacity: .8;
-}
-
-.sign_up_container input {
-	height: 40px;
-	width: 200px;
-	padding: 5px;
-	margin-top: 15px;
-}*/
 
 a {
 	text-decoration: none;
@@ -101,15 +57,21 @@ li {
 	padding-left: 10px;
 }
 
-/*
-input {
-	margin-top: 10px;
-}*/
-
 .info_container {
 	border: 1px solid gray;
 	border-radius: 5px;
 	width: 25em;
 	margin-left: 10%;
 	padding: 10px;
+}
+
+.delete_button {
+	float: right;
+	margin-top: 100px;
+	margin-right: 10%;
+}
+
+.members_container {
+	margin-left: 65%;
+	position: fixed;
 }
