@@ -10,23 +10,30 @@
 </head>
 
 <body>
-	<a class="back_button" href="/users/<%=user.id%>">Back to Profile</a>
-<h1 class="edit_title">Edit Stuff About  <%= user.username %>'s Profile  </h1>
+	<header>
 
-<div class="edit_container" >
+	<h1 class="edit_title">Edit <%= user.username %>'s Profile </h1>
+		<a class="back_button" href="/users/<%=user.id%>">Back to Profile</a>
+	</header>
+
+
+
+
+<!-- new users go here to fill out information -->
+
+<!-- users fills out this form to create a profile -->
+<div class="info_container" >
 	<form action="/users/<%=user.id%>/index" method="POST">
-		<input type="text" name="img" placeholder="img url"><br>
-		<input type="text" name="instruments" placeholder="<%=user.instruments%>"><br>
-		<input type="text" name="soundcloud" placeholder="<%=user.soundcloud%>"><br>
-		<input type="text" name="genre" placeholder="<%=user.genre%>"><br>
-		<input type="text" name="looking" placeholder="<%=user.looking%>"><br><br>
+		<li><h2>Profile Picture:</h2><input type="text" name="img" placeholder="img url"></li><br>
+		<h2>Instruments:</h2><input type="text" name="instruments" placeholder="<%=user.instruments%>"><br>
+		<h2>SoundCloud Profile:</h2><input type="text" name="soundcloud" placeholder="<%=user.soundcloud%>"><br>
+		<h2>Genres:</h2><input type="text" name="genre" placeholder="<%=user.genre%>"><br>
+		<h2>Would like to meet:</h2><input type="text" name="looking" placeholder="<%=user.looking%>"><br><br>
 		<input type="hidden" name="_method" value="POST"/>
-		 <textarea class="bio" name="bio" rows="15" cols="50" placeholder="<%=user.bio%>"></textarea><br/>
-		<input class= "submit" type="submit">
+		<h2>About You:</h2><textarea class="bio" name="bio" rows="10" cols="40" placeholder="<%=user.bio%>"></textarea><br/>
+		<button class= "info_submit" type="submit">Submit</button>
 	</form>
-		
-		<!-- <button class="edit_form_button">SUBMIT</button> -->
-	</form>
+</div>
 
 
 
