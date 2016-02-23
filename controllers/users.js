@@ -134,42 +134,58 @@ function isLoggedIn(req, res, next) {
   res.redirect('/');
 } ;
 
+//  router.get('/:id', isLoggedIn, function(req, res) {
+// //checks that the user logged in is the user being shown
+//   res.locals.usertrue = (req.user.id == req.params.id);
+
+//    Comments.find({}, function(err, comments){
+//     //finds a specific user
+//     User.findById(req.params.id, function(err, user){
+//       res.render('users/show.ejs', {
+//         user: user,
+//         comments: comments
+//       })
+//     })
+//   })
+// });
+
 //comment
-// router.get('/', function(req, res) {
-//   Comments.find({}, function(err, comments) {
-//   res.render('users/show.ejs', 
-//     {comments : comments});
-// });
-// });
 
- router.get('/:id', isLoggedIn, function(req, res) {
-//checks that the user logged in is the user being shown
-  res.locals.usertrue = (req.user.id == req.params.id);
-
-  Comments.find({}, function(err, comments){
-    //finds a specific user
-    User.findById(req.params.id, function(err, user){
-      res.render('users/show.ejs', {
-        user: user,
-        comments: comments
-      })
-    })
-  })
-});
 
 router.post('/:id/comments', function(req, res) {
-  Comments.findById(req.params.id, function(err, user) {
+  Comments.findByIdAndUpdate(req.params.id, req.body, function(err, comments) {
     var newComment = new Comments(req.body);
     newComment.save(function(err, comments) {
-      user.comments.push(comments);
-      user.save(function(err) {
+      // user.comments.push(comments);
+      // user.save(function(err) {
         res.redirect('/users/' + req.params.id );
-      });
+      // });
     });
   });
 });
 
+router.get('/', function(req, res) {
+  Comments.findByIdAndUpdate(req.params.id, req.body, function(err, comments) {
+  Comments.find({}, function(err, comments) {
+  res.render('users/show.ejs', 
+    {comments : comments});
+});
+});
+});
 
+// Person.
+//   find({
+//     occupation: /host/,
+//     'name.last': 'Ghost',
+//     age: { $gt: 17, $lt: 66 },
+//     likes: { $in: ['vaporizing', 'talking'] }
+//   }).
+
+
+
+// User.findByIdAndUpdate(req.params.id, req.body, function(err, data) {
+//   res.redirect('/users/' + req.user.id );
+//   });
 // router.post('/:id/comments', function(req, res){
 //   console.log(req.body);
 //  // console.log("This is req.body " + req.body);

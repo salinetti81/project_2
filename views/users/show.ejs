@@ -54,11 +54,11 @@
 <div class= "comments_section">
 	<h4>Leave a Comment</h4>
 	<form action="/users/<%=user.id%>/comments" method="POST"> 
-		<input type="hidden" name="profileId" value="<%= user.id %>">  
+	
 		<input type="text" name="name" placeholder="name"><br>
 		<input type="text" name="profile" placeholder="Profile URL"><br><br>
 		<textarea class="comments" name="comments" rows="15" cols="50" placeholder="Comments"></textarea><br/>
-
+	<input type="hidden" name="profileId" value="<%= user.id %>">
 		<button id= "comments_submit_button" type="submit">Submit</button><br>
 	</form>
 </div>
