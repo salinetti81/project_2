@@ -5,14 +5,14 @@ $("#start").click(function() {
   $("main").slideUp("slow", function() {
     // Animation complete.
   });
- console.log("clicks");
+ // console.log("clicks");
 });
 
 $("#top").click(function() {
   $("main").slideDown("slow", function() {
     // Animation complete.
   });
- console.log("top clicks");
+ // console.log("top clicks");
 });
 
 

@@ -216,9 +216,18 @@ function isLoggedIn(req, res, next) {
   if (req.isAuthenticated())
     return next();
 //if user doesn't exists, go here
-  res.redirect('/');
+      res.redirect('/');
 } ;
 
+//delete user
+router.delete('/:id/index', function(req,res){
+  console.log("This has been deleted " + req.params.id)
+    User.findByIdAndRemove(req.params.id, function(err, user){
+      res.redirect('/users/');
+  })
+});
+
+module.exports = router;
 //  router.get('/:id', isLoggedIn, function(req, res) {
 // //checks that the user logged in is the user being shown
 //   res.locals.usertrue = (req.user.id == req.params.id);
@@ -263,13 +272,7 @@ function isLoggedIn(req, res, next) {
 
 
 
-//delete user
-router.delete('/:id/index', function(req,res){
-  console.log("This has been deleted " + req.params.id)
-  User.findByIdAndRemove(req.params.id, function(err, user){
-    res.redirect('/users/');
-  })
-});
+
 
 
 //////////THIS TYPE OF DELETE FEATURE MIGHT BE NEEDED LATER ON/////////////
@@ -294,7 +297,7 @@ router.delete('/:id/index', function(req,res){
 //   }); // end User find
 // });
 
-module.exports = router;
+
 
 
 
