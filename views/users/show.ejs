@@ -18,7 +18,7 @@
 		<!-- Logout/Redirect to Home page -->
 		<li><a href="/users/logout"><p>Logout</p></a></li>
 		<!-- Build an edit function and route -->
-		<li><a href="/users/id/signup"><p>Edit Your Account</p></a></li>
+		<li> <a class="edit_button" href="/users/<%= user %>/edit">   Edit Your Profile <%= user.name %> </a></li>
 	</ul>
   </nav>
 </header>
@@ -53,32 +53,36 @@
 <!-- Comments Section -->
 <div class= "comments_section">
 	<h4>Leave a Comment</h4>
-	<form action="/users/<%=user.id%>" method="POST"> 
+	<form action="/users/<%=user.id%>/comments" method="POST"> 
+		<input type="hidden" name="profileId" value="<%= user.id %>">  
 		<input type="text" name="name" placeholder="name"><br>
 		<input type="text" name="profile" placeholder="Profile URL"><br><br>
 		<textarea class="comments" name="comments" rows="15" cols="50" placeholder="Comments"></textarea><br/>
+
 		<button id= "comments_submit_button" type="submit">Submit</button><br>
 	</form>
 </div>
 
 <div class= "comments_results">
 	<!-- comments from above form go here -->
-	<div class= "new_info">
+
 	<h4>These are the comments:</h4>
     <ul>
     	<li><h4>Name:</h4> <%=user.name%> </li>
     	<li><h4>Profile:</h4> <%=user.profile%> </li>
     	<li><h4>Comments</h4> <%=user.comments%> </li>
-     
     </ul>
-</div>
+
 </div>
 
 
+
+
+<!-- Need a list of users -->
 
   <!-- Delete Button; Needs to be distinctly seperate-->
   <br><hr><br><hr><br><hr><br><hr><br><hr>
-	<form action="/users/<%=user.id%>/show" method="POST">
+	<form action="/users/<%=user.id%>/index" method="POST">
     <input type="hidden" name="_method" value="DELETE">
     <button id="delete-button">Delete My Account</button>
 	</form>

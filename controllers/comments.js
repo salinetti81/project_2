@@ -1,23 +1,25 @@
 // This is the Comments Controller
 var express = require('express');
 var router = express.Router();
+var passport = require('passport');
 
 var Comments = require('../models/comments');
 
-// INDEX
-router.get('/', function(req, res) {
-	Comments.find(function(err, comments) {
-  res.render('users/show.ejs', {data : comments});
-});
-});
+// // INDEX
+// router.get('/', function(req, res) {
+// 	Comments.find({}, function(err, comments) {
+//   res.render('users/show.ejs', 
+//   	{comments : data});
+// });
+// });
 
 
 
-router.get('/json', function(req, res) {
-  Comments.find(function(err, comments) {
-    res.send(comments);
-  });
-});
+// router.get('/json', function(req, res) {
+//   Comments.find(function(err, comments) {
+//     res.send(comments);
+//   });
+// });
 
 
 

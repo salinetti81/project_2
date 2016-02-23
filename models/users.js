@@ -1,6 +1,6 @@
 //userSchema 
 var mongoose = require('mongoose');
-var soundCloudSchema = require('./soundcloud').schema;
+var commentsSchema = require('./comments').schema;
 var bcrypt = require('bcrypt-nodejs');
 
 var userSchema = mongoose.Schema({
@@ -12,7 +12,8 @@ var userSchema = mongoose.Schema({
 	instruments: [],
 	soundcloud: String, //[soundCloudSchema],
 	twitter: String, //url
-	facebook: String //url
+	facebook: String, //url
+	comments: [commentsSchema]
 });
 
 // methods ======================

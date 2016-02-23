@@ -28,11 +28,13 @@ router.get('/:id/json', function(req, res) {
 });
 
 //Comments JSON
-router.get('/:id/json', function(req, res) {
-  Comments.findById(req.params.id, function(err, comments) {
-      res.send(comments);
+
+router.get('/comments/json', function(req, res) {
+  Comments.find(function(err, comments) {
+    res.send(comments);
   });
 });
+
 
 //LOGOUT
 router.get('/logout', function(req, res) {
@@ -88,7 +90,7 @@ router.post('/signup', passport.authenticate('local-signup', {
 // });
 });
 
-//PROCESS INFO FORM
+// PROCESS INFO FORM
 router.post('/:id/index', function(req, res){
  // console.log("This is req.body " + req.body);
  // console.log("This is req.params.id " + req.params.id)
@@ -96,6 +98,32 @@ router.post('/:id/index', function(req, res){
   res.redirect('/users/' + req.user.id );
   });
 });
+
+
+
+
+
+
+// // EDIT
+// router.get('/:id/edit', function(req, res) {
+//   for(var i = 0; i < User.data.length; i++) {
+//     if(User.data[i].id == req.params.id) {
+//       res.render('edit.ejs', User.data[i])
+//     }
+//   }
+// });
+
+// //User
+// router.put('/:id', function(req, res) {
+//   req.body.id = parseInt(req.params.id);
+//   for(var i = 0; i < User.data.length; i++) {
+//     if(User.data[i].id == req.params.id) {
+//       User.data[i] = req.body;
+//     }
+//   }
+//   res.redirect('/users');
+// });
+
 
 //defines isLoggedIn
 function isLoggedIn(req, res, next) {
@@ -106,13 +134,60 @@ function isLoggedIn(req, res, next) {
   res.redirect('/');
 } ;
 
+//comment
+// router.get('/', function(req, res) {
+//   Comments.find({}, function(err, comments) {
+//   res.render('users/show.ejs', 
+//     {comments : comments});
+// });
+// });
+
+ router.get('/:id', isLoggedIn, function(req, res) {
+//checks that the user logged in is the user being shown
+  res.locals.usertrue = (req.user.id == req.params.id);
+
+  Comments.find({}, function(err, comments){
+    //finds a specific user
+    User.findById(req.params.id, function(err, user){
+      res.render('users/show.ejs', {
+        user: user,
+        comments: comments
+      })
+    })
+  })
+});
+
+router.post('/:id/comments', function(req, res) {
+  Comments.findById(req.params.id, function(err, user) {
+    var newComment = new Comments(req.body);
+    newComment.save(function(err, comments) {
+      user.comments.push(comments);
+      user.save(function(err) {
+        res.redirect('/users/' + req.params.id );
+      });
+    });
+  });
+});
+
+
+// router.post('/:id/comments', function(req, res){
+//   console.log(req.body);
+//  // console.log("This is req.body " + req.body);
+//  // console.log("This is req.params.id " + req.params.id)
+//   User.findByIdAndUpdate(req.params.id, req.body, function(err, comments) {
+//   res.redirect('/users/' + req.user.id + '/comments' );
+//   });
+// });
+
+
+
+//delete user
 router.delete('/:id/index', function(req,res){
   console.log("This is delete " + req.params.id)
   User.findByIdAndRemove(req.params.id, function(err, user){
     res.redirect('/users/');
   })
 });
-
 
 module.exports = router;
 
