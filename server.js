@@ -40,11 +40,13 @@ app.use(passport.session()); //for persistent login sessions
 //routes
 var usersController = require('./controllers/users');
 var commentsController = require('./controllers/comments');
+var membersController = require('./controllers/members');
 
 require('./config/passport.js')(passport);
 
 app.use('/users', usersController);
 app.use('/comments', commentsController);
+//app.use('/members', membersController);
 // app.use('/users', soundCloudController);
 
 app.get('/', function(req, res) {

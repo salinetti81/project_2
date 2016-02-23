@@ -1,6 +1,7 @@
 //userSchema 
 var mongoose = require('mongoose');
 var commentsSchema = require('./comments').schema;
+var membersSchema = require('./members').schema;
 var bcrypt = require('bcrypt-nodejs');
 
 var userSchema = mongoose.Schema({
@@ -13,7 +14,8 @@ var userSchema = mongoose.Schema({
 	soundcloud: String, //[soundCloudSchema],
 	twitter: String, //url
 	facebook: String, //url
-	comments: [commentsSchema]
+	comments: [commentsSchema],
+	members: [membersSchema]
 });
 
 // methods ======================

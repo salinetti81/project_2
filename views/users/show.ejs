@@ -54,15 +54,15 @@
 <div class= "comments_section">
 	<h4>Leave a Comment</h4>
 	<form action="/users/<%=user.id%>/comments" method="POST"> 
-	
-		<input type="text" name="name" placeholder="name"><br>
+
+		<input type="text" name="name" placeholder="name"><br><br>
 		<input type="text" name="profile" placeholder="Profile URL"><br><br>
 		<textarea class="comments" name="comments" rows="15" cols="50" placeholder="Comments"></textarea><br/>
 	<input type="hidden" name="profileId" value="<%= user.id %>">
 		<button id= "comments_submit_button" type="submit">Submit</button><br>
 	</form>
 </div>
-
+<br><br>
 <div class= "comments_results">
 	<!-- comments from above form go here -->
 
@@ -81,13 +81,13 @@
 <!-- Need a list of users -->
 
   <!-- Delete Button; Needs to be distinctly seperate-->
-  <br><hr><br><hr><br><hr><br><hr><br><hr>
+  <br><br><br><br><br><br><br>
 	<form action="/users/<%=user.id%>/index" method="POST">
     <input type="hidden" name="_method" value="DELETE">
     <button id="delete-button">Delete My Account</button>
 	</form>
 </main>
-
+<br><br>
 <% include ../partials/footer %>
 </body>
 </html>

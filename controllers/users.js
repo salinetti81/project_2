@@ -1,9 +1,11 @@
 var express = require('express');
 var router = express.Router();
 var passport = require('passport');
+
 var User = require('../models/users');
 var SoundCloud = require('../models/soundcloud');
-var Comments = require('../models/comments')
+var Comments = require('../models/comments');
+var Members = require('../models/members');
 
 //INDEX
 router.get('/', function(req, res) {
@@ -33,6 +35,13 @@ router.get('/comments/json', function(req, res) {
   Comments.find(function(err, comments) {
     res.send(comments);
   });
+});
+
+// Members JSON
+router.get('/members/json', function(req, res) {
+  Members.find(function(err, members) {
+  res.send(members);
+});
 });
 
 
@@ -99,11 +108,33 @@ router.post('/:id/index', function(req, res){
   });
 });
 
+//comment
+router.post('/:id/comments', function(req, res) {
+  Comments.findByIdAndUpdate(req.params.id, req.body, function(err, comments) {
+    var newComment = new Comments(req.body);
+    newComment.save(function(err, comments) {
+      // user.comments.push(comments);
+      // user.save(function(err) {
+        res.redirect('/users/' + req.params.id );
+      // });
+    });
+  });
+});
+
+router.get('/', function(req, res) {
+  // Comments.find({profileId}, req.params.id, req.body, function(err, comments)
+  Comments.findByIdAndUpdate(req.params.id, req.body, function(err, comments) {
+  Comments.find({}, function(err, comments) {
+  res.render('users/show.ejs', 
+    {comments : comments});
+});
+});
+});
 
 
+// Members List on Users Profile Page
 
-
-
+// A user needs to be able to edit thier OWN page
 // // EDIT
 // router.get('/:id/edit', function(req, res) {
 //   for(var i = 0; i < User.data.length; i++) {
@@ -149,29 +180,10 @@ function isLoggedIn(req, res, next) {
 //   })
 // });
 
-//comment
 
 
-router.post('/:id/comments', function(req, res) {
-  Comments.findByIdAndUpdate(req.params.id, req.body, function(err, comments) {
-    var newComment = new Comments(req.body);
-    newComment.save(function(err, comments) {
-      // user.comments.push(comments);
-      // user.save(function(err) {
-        res.redirect('/users/' + req.params.id );
-      // });
-    });
-  });
-});
 
-router.get('/', function(req, res) {
-  Comments.findByIdAndUpdate(req.params.id, req.body, function(err, comments) {
-  Comments.find({}, function(err, comments) {
-  res.render('users/show.ejs', 
-    {comments : comments});
-});
-});
-});
+
 
 // Person.
 //   find({
