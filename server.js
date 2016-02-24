@@ -10,12 +10,13 @@ var morgan = require('morgan');
 // var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
+var mongoUri = process.env.MONGOLAB_URI || 'mongodb://localhost/rocky-tor-53763';
 
 // var configDB = require('./config/server.js');
 
 //configuration
-mongoose.connect('mongodb://localhost:27017/users_models');
-
+// mongoose.connect('mongodb://localhost:27017/users_models');
+mongoose.connect(mongoUri);
 //express set up
 app.use(morgan('dev'));
 // app.use(cookieParser());
