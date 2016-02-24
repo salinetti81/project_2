@@ -125,13 +125,17 @@ textarea {
 	height: 500px;
 	width: 20em;
 	/*background-color: black;*/
-	opacity: .5;
+	/*opacity: .5;*/
 
 }
 
 .members_container {
 	margin-right: 1%;
  
+}
+
+.members_container li {
+	display: !important;
 }
 
 .comments_results {

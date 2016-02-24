@@ -62,8 +62,10 @@
   <div class='members_container'>
     <ul>
       <% for (var i = 0; i < users.length; i++){ %>
-        <li>
-          <a href="/users/<%=users[i]._id%>"><%=users[i].username%></a> </li>
+        <li><a href="/users/<%=users[i]._id%>">
+          <img src="<%= users[i].img%>"><br>
+          <%=users[i].username%></a> 
+        </li>
       <% } %>
     </ul>
   

@@ -38,6 +38,11 @@ router.get('/json', function(req, res) {
       res.send(users);
   });
 });
+//LOGOUT
+router.get('/logout', function(req, res) {
+  req.logout();
+  res.redirect('/users');
+});
 
 // SHOW
 router.get('/:id', function(req, res) {
@@ -73,15 +78,12 @@ router.get('/members/json', function(req, res) {
 });
 
 
-//LOGOUT
-router.get('/logout', function(req, res) {
-  req.logout();
-  res.redirect('/users');
-});
 
-router.get('/edit', function(req, res) {
-  res.send("This works");
-});
+
+
+// router.get('/edit', function(req, res) {
+//   res.send("This works");
+// });
 
 // A user needs to be able to edit thier OWN page
 // // EDIT
