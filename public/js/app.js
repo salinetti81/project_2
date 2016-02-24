@@ -16,7 +16,6 @@ $("#top").click(function() {
 });
 
 
-
 // SC.initialize({
 //   client_id: 'YOUR_CLIENT_ID'
 // });

@@ -10,7 +10,7 @@
 </head>
 <body>
 
-<header class= "show_header">
+<header class= "show_header ">
 	<nav>
 	<ul>
 		<li><img src="<%= user.img%>"></li>
@@ -34,7 +34,7 @@
 <div class= "new_info">
     <ul>
     	<li><h4>Instruments: <%=user.instruments%> </h4></li><br>
-    	<li><h4>SoundCloud: <%=user.soundcloud%>"></h4> </li><br>
+    	<li><h4>SoundCloud: <%=user.soundcloud%></h4> </li><br>
     	<li><h4>Genre: <%=user.genre%> </h4></li><br>
       <li><h4>Looking for: <%=user.looking%> </h4></li><br>
       <li><h4>Bio: <%=user.bio%> </h4></li>
@@ -61,21 +61,14 @@
 
   <div class='members_container'>
     <ul>
-      <% for(var i = 0; i < user.length; i++){ %>
-        <li>User
-          <h2><a href="/users/<%=user[i]._id%>"><%=users[i].name%> <br> 
-            <img class='user_img' src="<%= user[i].img%> "></a></h2>
-        </li>
+      <% for (var i = 0; i < users.length; i++){ %>
+        <li>
+          <a href="/users/<%=users[i]._id%>"><%=users[i].username%></a> </li>
       <% } %>
     </ul>
   
 
-      <select id="dataset-select">
-            <option value="no id"/>-------</option>
-            <% for (var i=0; i < user.length; i++) { %>
-              <option value="<%= usersd[i].id %>"><%= user[i].username %></option>
-            <% } %>
-          </select> 
+     
                   
   </div>
 

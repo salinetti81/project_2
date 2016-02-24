@@ -124,8 +124,9 @@ textarea {
 	/*position: fixed;*/
 	height: 500px;
 	width: 20em;
-	background-color: grey;
-	opacity: .4;
+	/*background-color: black;*/
+	opacity: .5;
+
 }
 
 .members_container {

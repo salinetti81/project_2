@@ -15,10 +15,38 @@ router.get('/', function(req, res) {
   });
 });
 
+
+// // //SHOW PAGE FOR WHEN USER IS LOGGED IN
+// router.get('/:id/', function(req, res) {
+//   //checks if the user is logged in
+//   // res.locals.usertrue = (req.user.id == req.params.id);
+//   // req.params.id == req.user.id ? res.locals.usertrue = true : res.locals.usertrue = false;
+//   //list users
+//   // User.find({}, function(err, users) {
+//     //finds single user
+//     User.findById(req.params.id, function(err, user) {
+//       // console.log(user);
+//       res.render('users/show.ejs', { user: user });
+//       // });
+//   });
+// });
+
+
 //JSON
 router.get('/json', function(req, res) {
   User.find(function(err, users) {
       res.send(users);
+  });
+});
+
+// SHOW
+router.get('/:id', function(req, res) {
+  res.locals.login = req.isAuthenticated();
+  User.find({}, function(err, users) {
+    console.log(users.length);
+    User.findById(req.params.id, function(err, user) {
+      res.render('users/show.ejs', {users: users, user: user});
+    })
   });
 });
 
@@ -53,21 +81,6 @@ router.get('/logout', function(req, res) {
 
 router.get('/edit', function(req, res) {
   res.send("This works");
-});
-
-//SHOW PAGE FOR WHEN USER IS LOGGED IN
-router.get('/:id/', function(req, res) {
-  //checks if the user is logged in
-  // res.locals.usertrue = (req.user.id == req.params.id);
-  // req.params.id == req.user.id ? res.locals.usertrue = true : res.locals.usertrue = false;
-  //list users
-  // User.find({}, function(err, users) {
-    //finds single user
-    User.findById(req.params.id, function(err, user) {
-      // console.log(user);
-      res.render('users/show.ejs', { user: user });
-      // });
-  });
 });
 
 // A user needs to be able to edit thier OWN page
@@ -155,14 +168,14 @@ router.get('/', function(req, res) {
 });
 
 //List of users
-router.get('/', function(req, res) {
-  // User.findByIdAndUpdate(req.params.id, req.body, function(err, user) {
-    User.find({}, function(err, user) {
-      res.send('users/show.ejs' ,
-      {user : user});
-    });
-  // });
-});
+// router.get('/', function(req, res) {
+//   // User.findByIdAndUpdate(req.params.id, req.body, function(err, user) {
+//     User.find({}, function(err, user) {
+//       res.send('users/show.ejs' ,
+//       {user : user});
+//     });
+//   // });
+// });
 
 // // Json for members
 // router.get('/json', function(req, res) {
