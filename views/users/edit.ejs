@@ -9,7 +9,7 @@
 	<title>Project Two</title>
 </head>
 
-<body>
+<body class = "edit_body">
 	<header>
 
 	<h1 class="edit_title">Edit <%= user.username %>'s Profile </h1>
@@ -24,9 +24,9 @@
 <!-- users fills out this form to create a profile -->
 <div class="info_container" >
 	<form action="/users/<%=user.id%>/index" method="POST">
-		<li><h2>Profile Picture:</h2><input type="text" name="img" placeholder="img url"></li><br>
+<!-- 		<li><h2>Profile Picture:</h2><input type="text" name="img" placeholder="img url"></li><br> -->
 		<h2>Instruments:</h2><input type="text" name="instruments" placeholder="<%=user.instruments%>"><br>
-		<h2>SoundCloud Profile:</h2><input type="text" name="soundcloud" placeholder="<%=user.soundcloud%>"><br>
+		<!-- <h2>SoundCloud Profile:</h2><input type="text" name="soundcloud" placeholder="''><br> -->
 		<h2>Genres:</h2><input type="text" name="genre" placeholder="<%=user.genre%>"><br>
 		<h2>Would like to meet:</h2><input type="text" name="looking" placeholder="<%=user.looking%>"><br><br>
 		<input type="hidden" name="_method" value="POST"/>

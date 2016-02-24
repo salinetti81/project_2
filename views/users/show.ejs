@@ -54,46 +54,51 @@
  <!--  <p>Hello, your name is <span id="username"></span></p> -->
 
 <!-- Sound cloud player widget -->
+
  <div class="player" id="player"> </div> 
 
- <div class="members_container">
-<h2>Users</h2>
- <ul>
-  <% for (var i=0; i < user.length; i ++) { %>
-    <li><%= user[i].username %></li>
-    <% } %>
-</ul>        
-</div>   
+ 
 </div>
+
+  <div class='members_container'>
+    <ul>
+      <% for(var i = 0; i < user.length; i++){ %>
+        <li>User
+          <h2><a href="/users/<%=user[i]._id%>"><%=users[i].name%> <br> 
+            <img class='user_img' src="<%= user[i].img%> "></a></h2>
+        </li>
+      <% } %>
+    </ul>
+    </div>
+
 
  <!-- Comments Section -->
 <div class= "comments_section">
-  <h4>Leave a Comment</h4>
+  <h4>Leave me a message:</h4>
   <form action="/users/<%=user.id%>/comments" method="POST">
     <input type="text" name="name" placeholder="name"><br><br>
+   
     <textarea class="comments" name="comments" rows="15" cols="50" placeholder="Comments"></textarea><br/>
-  <input type="hidden" name="profileId" value="<%= user.id %>">
+ 
     <button id= "comments_submit_button" type="submit">Submit</button><br>
   </form>
+</div>
 
   <div class= "comments_results">
   <!-- comments from above form go here -->
 
-  <h4>These are the comments:</h4>
+  <!-- <h4>What people are saying:</h4> -->
   <% for(var i = 0; i < user.comments.length; i ++) { %>
     <ul>
-      <li><h4>Name:</h4> <%=user.comments[i].name%> </li>
-      <li><h4>Profile:</h4> <%=user.comments[i].profile%> </li>
-      <li><h4>Comments</h4> <%=user.comments[i].comments%> </li>
+      <li><%=user.comments[i].name%> </li><br>
+      <!-- <li><h4>Profile:</h4> </li> -->
+      <li><%=user.comments[i].comments%> </li>
+    <hr>
     </ul>
 <% } %>
-</div>
-</div>
+  </div>
+
 <br><br>
-
-
-
-  <!-- Delete Button; Needs to be distinctly seperate-->
 
 </main>
 <br><br>

@@ -16,6 +16,7 @@ body {
 	padding-top: 50px;
 	padding-bottom: 300px;
 	padding-left: ;
+	text-shadow: -1px 0 snow, 0 1px snow, 1px 0 snow, 0 -1px snow;
 }
 
 main {

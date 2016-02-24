@@ -5,6 +5,8 @@ var membersSchema = require('./members').schema;
 var bcrypt = require('bcrypt-nodejs');
 
 var userSchema = mongoose.Schema({
+	comments: [commentsSchema],
+	members: [membersSchema],
 	username: String,
 	email: String,
   password: String,
@@ -12,9 +14,9 @@ var userSchema = mongoose.Schema({
 	bio: String,
 	instruments: [],
 	soundcloud: String, //[soundCloudSchema],
-	genre: String, //url
-	looking: String, //url
-	comments: [commentsSchema]
+	genre: String, 
+	looking: String 
+	
 	// members: [membersSchema]
 });
 

@@ -154,6 +154,15 @@ router.get('/', function(req, res) {
 });
 });
 
+router.get('/:id/users/', function(req, res) {
+  User.findById(req.params.id, req.body, function(err, user) {
+    User.find({}, function(err, user) {
+      res.render('users/show.ejs',
+      {user : user});
+    });
+  });
+});
+
 // // Json for members
 // router.get('/json', function(req, res) {
 //   Members.find(function(err, members) {
