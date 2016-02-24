@@ -22,10 +22,9 @@
     <li><a class="edit_button" href="<%= user.id %>/edit">   Edit Your Profile <%= user.name %> </a></li>
     <!-- Logout/Redirect to Home page -->
 		<li><a href="/users/logout"><p>Logout</p></a></li>
-
-
 	</ul>
   </nav>
+  
 </header>
 
 <main>
@@ -35,7 +34,7 @@
 <div class= "new_info">
     <ul>
     	<li><h4>Instruments: <%=user.instruments%> </h4></li><br>
-    	<li><h4>SoundCloud: <a href="<%=user.soundcloud%>"></a></h4> </li><br>
+    	<li><h4>SoundCloud: <%=user.soundcloud%>"></h4> </li><br>
     	<li><h4>Genre: <%=user.genre%> </h4></li><br>
       <li><h4>Looking for: <%=user.looking%> </h4></li><br>
       <li><h4>Bio: <%=user.bio%> </h4></li>
@@ -69,10 +68,19 @@
         </li>
       <% } %>
     </ul>
-    </div>
+  
 
+      <select id="dataset-select">
+            <option value="no id"/>-------</option>
+            <% for (var i=0; i < user.length; i++) { %>
+              <option value="<%= usersd[i].id %>"><%= user[i].username %></option>
+            <% } %>
+          </select> 
+                  
+  </div>
 
  <!-- Comments Section -->
+ <div class="comments_flex">
 <div class= "comments_section">
   <h4>Leave me a message:</h4>
   <form action="/users/<%=user.id%>/comments" method="POST">
@@ -87,7 +95,7 @@
   <div class= "comments_results">
   <!-- comments from above form go here -->
 
-  <!-- <h4>What people are saying:</h4> -->
+  <h4>Comments:</h4>
   <% for(var i = 0; i < user.comments.length; i ++) { %>
     <ul>
       <li><%=user.comments[i].name%> </li><br>
@@ -97,6 +105,7 @@
     </ul>
 <% } %>
   </div>
+</div><!--  ends comments -->
 
 <br><br>
 
@@ -104,10 +113,10 @@
 <br><br>
 <footer>
   <hr>
-   <div class='delete_button'>
+   <div class=''>
 <form action="/users/<%=user.id%>/index" method="POST">
     <input type="hidden" name="_method" value="DELETE">
-    <button id="delete-button">Delete My Account</button>
+    <button class="delete_button">Delete My Account</button>
   </form>
   </div>
 </footer>

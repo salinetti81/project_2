@@ -70,6 +70,11 @@ header {
 	height: 100%;
 }
 
+header h1 {
+	margin-left: 10%;
+	font-size: 40px;
+}
+
 .show_header {
 	background-color: rgb(38, 38, 38);
 	background-color: snow;
@@ -112,7 +117,7 @@ header button {
 	padding-top: 10px;
 	padding-bottom: 0;
 	margin-left: 38%;
-	margin-top: 100px;
+	margin-top: 50px;
 	/*border-radius: 5px;*/
 	opacity: .8;
 

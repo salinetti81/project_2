@@ -26,11 +26,21 @@ main {
 .nav_links {
 	float: right;
 	margin-right: 50px;
+	color: red;
+}
 
+.nav_links a:hover {
+	color: #A80014;
+	transition: .5s;
 }
 
 .nav_links li {
 	padding-left: 50px;
+}
+
+nav h1 {
+	margin-left: 25%;
+	font-size: 40px;
 }
 
 .show_header {
@@ -56,7 +66,7 @@ img	{
 	width: 80px;
 	border-radius: 100px;
 	margin-top: 30px;
-	margin-left: 10%
+	margin-left: 30%
 }
 
 li {
@@ -76,8 +86,17 @@ textarea {
 
 .delete_button {
 	float: right;
-	margin-top: 100px;
-	margin-right: 20%;
+	margin: 10px 10%;
+	height: 50px;
+	width: 10em;
+	color: black;
+	cursor: pointer;
+}
+
+.delete_button:hover {
+	background-color: #A80014;
+
+	transition: .5s;
 }
 
 .container {
@@ -90,7 +109,6 @@ textarea {
 	margin-top: 100px;
 }
 
-
 .members_container h2 {
 	margin-left: 50%;
 	/*position: fixed;*/
@@ -99,7 +117,7 @@ textarea {
 }
 
 .members_container ul {
-	margin-top: 30px;
+	margin-top: -400px;
 	margin-left: 60%;
 	margin-bottom: 200px;
 	z-index: -1;
@@ -109,8 +127,6 @@ textarea {
 	background-color: grey;
 	opacity: .4;
 }
-
-
 
 .members_container {
 	margin-right: 1%;
@@ -122,21 +138,47 @@ textarea {
 	-moz-box-shadow: 0px 0px 9px 2px rgba(0,0,0,0.75);
 	box-shadow: 0px 0px 9px 2px rgba(0,0,0,0.75);
 	width: 40%;
-	padding-left: 10px;
+	padding-top: 5px;
+	padding-left: 1%;
 	margin-left: 50%;
 	padding-bottom: 50px;
-	margin-top: -250px;
+	margin-top: -200px;
 	border-radius: 2px;
+	flex-shrink: 1;
 }
 
 .comments_results li {
 	padding-top: 15px;
 }
 
-footer {
-
-}
-
 textarea {
    resize: none;
 }
+
+.comments-flex {
+	display: inline-flex;
+	margin-bottom: 200px;
+	margin-top: -100px;
+}
+
+footer {
+margin-top: 100px;
+padding-top: 0;
+}
+
+button
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

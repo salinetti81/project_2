@@ -154,13 +154,14 @@ router.get('/', function(req, res) {
 });
 });
 
-router.get('/:id/users/', function(req, res) {
-  User.findById(req.params.id, req.body, function(err, user) {
+//List of users
+router.get('/', function(req, res) {
+  // User.findByIdAndUpdate(req.params.id, req.body, function(err, user) {
     User.find({}, function(err, user) {
-      res.render('users/show.ejs',
+      res.send('users/show.ejs' ,
       {user : user});
     });
-  });
+  // });
 });
 
 // // Json for members

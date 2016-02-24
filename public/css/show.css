@@ -19,6 +19,22 @@ body {
 	text-shadow: -1px 0 snow, 0 1px snow, 1px 0 snow, 0 -1px snow;
 }
 
+
+.edit_body {
+	background-image: none;
+	background-color: white;
+	background-image: url("https://c2.staticflickr.com/4/3279/2835170739_7687e8be5a_b.jpg");
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-attachment: fixed;
+	background-size: cover;
+	padding-top: 50px;
+	padding-bottom: 300px;
+	padding-left: ;
+	text-shadow: -1px 0 snow, 0 1px snow, 1px 0 snow, 0 -1px snow;
+
+}
+
 main {
 	padding-top: 200px;
 	padding-left: 10%;
@@ -30,10 +46,10 @@ main {
 }
 
 header {
-	color: black;
+	color: white;
 	margin-left: 10%;
 	margin-bottom: 30px;
-	text-shadow: 5px 2px 10px white;
+	/*text-shadow: 5px 2px 10px white;*/
 	/*background-color: rgb(38, 38, 38);
 	height: 18%;
 	z-index: 1;*/
@@ -105,11 +121,6 @@ li {
 	cursor: pointer;
 }
 
-.edit_title {
-	margin-right: 65%;
-	font-size: 40px;
-}
-
 textarea {
 	padding: 2px 5px;
 }
@@ -138,6 +149,12 @@ textarea {
 	background-color: grey;
 	opacity: .4;
 }
+
+.back_button {
+	color: black;
+}
+
+
 
 footer {
 
