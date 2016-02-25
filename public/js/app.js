@@ -32,8 +32,8 @@ $("#top").click(function() {
 
 // initilizes SoundCloud on pop up window
 SC.initialize({
-  client_id: '340f063c670272fac27cfa67bffcafc4',
-  redirect_uri: 'http://external.codecademy.com/soundcloud.html'
+  client_id: '71bf35d399627e1ac81bfdc1fe352040',
+  redirect_uri: 'https://rocky-tor-53763.herokuapp.com/users'
 });
 
 
