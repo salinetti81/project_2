@@ -15,23 +15,6 @@ router.get('/', function(req, res) {
   });
 });
 
-
-// // //SHOW PAGE FOR WHEN USER IS LOGGED IN
-// router.get('/:id/', function(req, res) {
-//   //checks if the user is logged in
-//   // res.locals.usertrue = (req.user.id == req.params.id);
-//   // req.params.id == req.user.id ? res.locals.usertrue = true : res.locals.usertrue = false;
-//   //list users
-//   // User.find({}, function(err, users) {
-//     //finds single user
-//     User.findById(req.params.id, function(err, user) {
-//       // console.log(user);
-//       res.render('users/show.ejs', { user: user });
-//       // });
-//   });
-// });
-
-
 //JSON
 router.get('/json', function(req, res) {
   User.find(function(err, users) {
@@ -63,7 +46,6 @@ router.get('/:id/json', function(req, res) {
 });
 
 //Comments JSON
-
 router.get('/comments/json', function(req, res) {
   Comments.find(function(err, comments) {
     res.send(comments);
@@ -169,6 +151,39 @@ router.get('/', function(req, res) {
 });
 });
 
+//defines islogingedIn
+function isLoggedIn(req, res, next) {
+//if user exists, do this
+  if (req.isAuthenticated())
+    return next();
+//if user doesn't exists, go here
+      res.redirect('/');
+} ;
+
+//delete user
+router.delete('/:id/index', function(req,res){
+  console.log("This has been deleted " + req.params.id)
+    User.findByIdAndRemove(req.params.id, function(err, user){
+      res.redirect('/users/');
+  })
+});
+
+module.exports = router;
+//  router.get('/:id', isLoggedIn, function(req, res) {
+// //checks that the user logged in is the user being shown
+//   res.locals.usertrue = (req.user.id == req.params.id);
+
+//    Comments.find({}, function(err, comments){
+//     //finds a specific user
+//     User.findById(req.params.id, function(err, user){
+//       res.render('users/show.ejs', {
+//         user: user,
+//         comments: comments
+//       })
+//     })
+//   })
+// });
+
 //List of users
 // router.get('/', function(req, res) {
 //   // User.findByIdAndUpdate(req.params.id, req.body, function(err, user) {
@@ -233,42 +248,6 @@ router.get('/', function(req, res) {
 //   }
 //   res.redirect('/users');
 // });
-
-
-//defines isLoggedIn
-function isLoggedIn(req, res, next) {
-//if user exists, do this
-  if (req.isAuthenticated())
-    return next();
-//if user doesn't exists, go here
-      res.redirect('/');
-} ;
-
-//delete user
-router.delete('/:id/index', function(req,res){
-  console.log("This has been deleted " + req.params.id)
-    User.findByIdAndRemove(req.params.id, function(err, user){
-      res.redirect('/users/');
-  })
-});
-
-module.exports = router;
-//  router.get('/:id', isLoggedIn, function(req, res) {
-// //checks that the user logged in is the user being shown
-//   res.locals.usertrue = (req.user.id == req.params.id);
-
-//    Comments.find({}, function(err, comments){
-//     //finds a specific user
-//     User.findById(req.params.id, function(err, user){
-//       res.render('users/show.ejs', {
-//         user: user,
-//         comments: comments
-//       })
-//     })
-//   })
-// });
-
-
 
 
 
@@ -373,6 +352,24 @@ module.exports = router;
 //         };
 //     });
 // });
+
+
+
+// // //SHOW PAGE FOR WHEN USER IS LOGGED IN
+// router.get('/:id/', function(req, res) {
+//   //checks if the user is logged in
+//   // res.locals.usertrue = (req.user.id == req.params.id);
+//   // req.params.id == req.user.id ? res.locals.usertrue = true : res.locals.usertrue = false;
+//   //list users
+//   // User.find({}, function(err, users) {
+//     //finds single user
+//     User.findById(req.params.id, function(err, user) {
+//       // console.log(user);
+//       res.render('users/show.ejs', { user: user });
+//       // });
+//   });
+// });
+
 
 
 
